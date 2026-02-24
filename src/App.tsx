@@ -20,6 +20,7 @@ import Map from './pages/Map';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
 import ColorPalette from './pages/ColorPalette';
+import SetupDemoUsers from './pages/SetupDemoUsers';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <DamSelectionProvider>
         <BrowserRouter>
           <Routes>
+            <Route path="/setup-demo" element={<SetupDemoUsers />} />
             <Route path="/login" element={<Login />} />
             <Route
               path="/*"
