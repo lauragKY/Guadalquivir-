@@ -1,0 +1,256 @@
+Work Item Type,Title,Description,Acceptance Criteria,Area Path,Iteration Path,Priority,State,Parent
+Epic,Gestión de Órdenes de Trabajo,Sistema completo para crear gestionar y ejecutar órdenes de trabajo de mantenimiento. Permite planificar y ejecutar mantenimientos de forma estructurada asegurando trazabilidad completa.,"Dependencias: Inventario, Archivo Técnico, Auscultación, Emergencias",SIPRESAS,HITO_01,1,New,
+Feature,Creación de Órdenes de Trabajo,Funcionalidad para crear OT preventivas y correctivas con toda la información necesaria,Formularios de creación con validaciones y generación automática de códigos,SIPRESAS,HITO_01,1,New,Gestión de Órdenes de Trabajo
+User Story,Crear Orden de Trabajo Preventiva,"Como Técnico de Mantenimiento quiero crear una OT preventiva programada para asegurar el mantenimiento regular de equipos críticos","1. Puedo seleccionar la presa desde el selector global
+2. Puedo elegir el tipo de mantenimiento: Preventivo Correctivo Predictivo
+3. Puedo asignar prioridad: Baja Media Alta Urgente
+4. Puedo vincular equipos o infraestructuras del inventario
+5. Puedo programar fecha prevista de ejecución
+6. Puedo asignar técnicos responsables
+7. Puedo adjuntar documentación de referencia
+8. El sistema genera automáticamente un código único (OT-YYYY-XXX)
+9. Se crea un registro en maintenance_work_orders con estado pending
+10. Se envía notificación al responsable asignado",SIPRESAS,HITO_01,1,New,Creación de Órdenes de Trabajo
+User Story,Crear Orden de Trabajo Correctiva de Emergencia,"Como Operador de Presa quiero crear una OT correctiva urgente para responder rápidamente a fallos detectados","1. Puedo crear OT con prioridad Urgente desde cualquier módulo
+2. Puedo describir el problema detectado
+3. Puedo adjuntar fotos del fallo
+4. El sistema sugiere técnicos disponibles según turno
+5. Se puede vincular desde alertas de auscultación
+6. Se puede vincular desde situaciones de emergencia
+7. Notificación inmediata a responsable de turno
+8. El estado inicial es in_progress si es urgente
+9. Se registra hora exacta de detección del fallo
+10. Se calcula SLA según criticidad del equipo",SIPRESAS,HITO_01,1,New,Creación de Órdenes de Trabajo
+Feature,Visualización y Consulta de OT,Capacidad para listar filtrar y ver detalles de órdenes de trabajo,Tabla con filtros avanzados y vista de detalle completa,SIPRESAS,HITO_01,1,New,Gestión de Órdenes de Trabajo
+User Story,Visualizar Lista de Órdenes de Trabajo,"Como Jefe de Mantenimiento quiero ver todas las OT filtradas por estado y presa para supervisar el trabajo del equipo","1. Veo tabla con todas las OT de la presa seleccionada
+2. Puedo filtrar por estado: Pendiente En Progreso Completada Cancelada
+3. Puedo filtrar por tipo de mantenimiento
+4. Puedo filtrar por prioridad
+5. Puedo filtrar por rango de fechas
+6. Veo código título equipo responsable fecha y estado
+7. Puedo ordenar por cualquier columna
+8. Puedo buscar por texto en código o título
+9. Veo indicadores visuales de OT vencidas (SLA excedido)
+10. Puedo acceder a detalle de cada OT",SIPRESAS,HITO_01,1,New,Visualización y Consulta de OT
+User Story,Ver Detalle de Orden de Trabajo,"Como Técnico de Mantenimiento quiero ver todos los detalles de una OT para conocer qué debo hacer y con qué recursos","1. Veo código título descripción completa
+2. Veo equipo/infraestructura vinculada con enlace al inventario
+3. Veo tipo prioridad estado actual
+4. Veo fechas: creación programada inicio real fin real
+5. Veo responsable asignado y equipo de trabajo
+6. Veo lista de materiales necesarios
+7. Veo procedimiento de trabajo si está disponible
+8. Veo historial de cambios de estado
+9. Veo archivos adjuntos (procedimientos manuales)
+10. Veo operaciones registradas si está en progreso",SIPRESAS,HITO_01,2,New,Visualización y Consulta de OT
+Feature,Gestión del Ciclo de Vida de OT,Funcionalidades para cancelar modificar y gestionar estados de OT,Workflow completo de estados con validaciones,SIPRESAS,HITO_01,2,New,Gestión de Órdenes de Trabajo
+User Story,Cancelar Orden de Trabajo,"Como Jefe de Mantenimiento quiero cancelar una OT que ya no es necesaria para mantener el sistema actualizado","1. Puedo cancelar OT en estado pending
+2. Debo proporcionar motivo de cancelación obligatorio
+3. El sistema registra quién y cuándo canceló
+4. No se puede cancelar OT en estado completed
+5. Se puede cancelar OT in_progress con confirmación adicional
+6. Se envía notificación a todos los involucrados
+7. La OT aparece en historial como cancelada
+8. No se puede reactivar una OT cancelada (debe crear nueva)
+9. Los materiales reservados se liberan automáticamente
+10. Se registra en el log de auditoría",SIPRESAS,HITO_01,2,New,Gestión del Ciclo de Vida de OT
+Epic,Programación y Planificación,Calendario de mantenimientos preventivos basado en frecuencias criticidad y disponibilidad de recursos. Optimiza recursos y evita fallos por falta de mantenimiento.,"Dependencias: Inventario, Explotación",SIPRESAS,HITO_01,1,New,
+Feature,Calendario de Mantenimientos,Sistema de calendario visual para planificar y coordinar mantenimientos,Calendario interactivo con drag & drop y validación de conflictos,SIPRESAS,HITO_01,1,New,Programación y Planificación
+User Story,Calendario de Mantenimientos Preventivos,"Como Jefe de Mantenimiento quiero ver calendario mensual de mantenimientos programados para planificar recursos y coordinar con operación","1. Veo vista calendario mensual con todas las OT programadas
+2. Puedo cambiar entre vista mes semana día
+3. Cada OT muestra código equipo y prioridad
+4. Colores diferentes según prioridad
+5. Puedo hacer clic en OT para ver detalle
+6. Puedo arrastrar y soltar OT para reprogramar
+7. Al reprogramar se registra el cambio y el motivo
+8. Veo alertas de conflictos de recursos (mismo técnico múltiples OT)
+9. Puedo filtrar por tipo de mantenimiento
+10. Puedo exportar el calendario a PDF",SIPRESAS,HITO_01,1,New,Calendario de Mantenimientos
+Feature,Generación Automática de OT,Sistema batch para crear OT preventivas según frecuencias configuradas,Edge Function con lógica de generación automática,SIPRESAS,HITO_01,2,New,Programación y Planificación
+User Story,Generar Mantenimientos Preventivos Automáticamente,"Como Sistema quiero crear OT preventivas automáticamente según frecuencias para asegurar que no se omitan mantenimientos programados","1. Proceso batch que se ejecuta diariamente
+2. Lee frecuencias de mantenimiento del inventario de equipos
+3. Genera OT preventivas con X días de antelación (configurable)
+4. Asigna responsable según rol y disponibilidad
+5. Calcula fecha programada según última intervención + frecuencia
+6. Solo genera si no existe OT preventiva pendiente para ese equipo
+7. Envía resumen diario al jefe de mantenimiento
+8. Registra en log todas las OT generadas automáticamente
+9. Respeta calendarios de parada de planta
+10. Permite configurar reglas de generación por tipo de equipo",SIPRESAS,HITO_01,2,New,Generación Automática de OT
+Feature,Asignación de Recursos,Funcionalidad para asignar personal materiales y herramientas a OT,Validación de disponibilidad y reserva de recursos,SIPRESAS,HITO_01,2,New,Programación y Planificación
+User Story,Asignar Recursos a Orden de Trabajo,"Como Jefe de Mantenimiento quiero asignar personal y materiales a una OT para garantizar que el trabajo se pueda ejecutar","1. Puedo asignar uno o varios técnicos a la OT
+2. Veo disponibilidad de cada técnico (otras OT asignadas)
+3. Puedo reservar materiales del almacén
+4. Veo stock disponible de cada material
+5. Puedo reservar herramientas especiales si es necesario
+6. El sistema valida que hay recursos suficientes
+7. Se envía notificación a técnicos asignados
+8. Los materiales reservados se descuentan del stock disponible
+9. Puedo reasignar recursos si la OT está en pending
+10. Se registra histórico de asignaciones",SIPRESAS,HITO_01,2,New,Asignación de Recursos
+Epic,Ejecución y Seguimiento,Registro detallado de actividades realizadas materiales utilizados personal asignado y tiempo invertido. Trazabilidad completa de todas las intervenciones realizadas.,"Dependencias: Inventario, Archivo Técnico",SIPRESAS,HITO_01,1,New,
+Feature,Control de Ejecución,Funcionalidades para iniciar pausar y controlar la ejecución de OT,Registro de tiempos y estados durante la ejecución,SIPRESAS,HITO_01,1,New,Ejecución y Seguimiento
+User Story,Iniciar Ejecución de Orden de Trabajo,"Como Técnico de Mantenimiento quiero marcar el inicio de la ejecución de una OT para registrar cuándo comencé el trabajo","1. Puedo cambiar estado de pending a in_progress
+2. El sistema registra automáticamente fecha y hora de inicio
+3. Puedo añadir comentarios iniciales (ej: estado inicial del equipo)
+4. Puedo adjuntar fotos del estado inicial
+5. El sistema me muestra el procedimiento de trabajo si existe
+6. Veo lista de materiales asignados
+7. Puedo confirmar o modificar lista de materiales
+8. Se envía notificación al supervisor
+9. Solo el técnico asignado puede iniciar la OT
+10. El cronómetro de SLA comienza a contar",SIPRESAS,HITO_01,1,New,Control de Ejecución
+User Story,Pausar y Reanudar Orden de Trabajo,"Como Técnico de Mantenimiento quiero pausar una OT cuando debo detener el trabajo para registrar tiempo real de trabajo efectivo","1. Puedo pausar una OT en estado in_progress
+2. Debo proporcionar motivo de pausa: Falta Material Espera Aprobación Condiciones Climáticas Otro
+3. El sistema registra timestamp de pausa
+4. Puedo añadir comentarios adicionales
+5. La OT aparece con estado visual Pausada
+6. Puedo reanudar la OT proporcionando comentario
+7. Se registra timestamp de reanudación
+8. El tiempo en pausa no cuenta para SLA de ejecución
+9. Puedo ver histórico de todas las pausas
+10. Se envía notificación al supervisor en cada pausa/reanudación",SIPRESAS,HITO_01,2,New,Control de Ejecución
+Feature,Registro de Operaciones,Sistema para documentar operaciones realizadas durante el mantenimiento,Registro detallado de actividades con fotos y mediciones,SIPRESAS,HITO_01,1,New,Ejecución y Seguimiento
+User Story,Registrar Operaciones Durante Ejecución,"Como Técnico de Mantenimiento quiero registrar cada operación que realizo durante el mantenimiento para documentar detalladamente el trabajo realizado","1. Puedo añadir múltiples operaciones a una OT en progreso
+2. Cada operación tiene: tipo descripción técnico hora inicio hora fin
+3. Tipos de operación: Inspección Ajuste Reparación Sustitución Prueba Limpieza
+4. Puedo registrar materiales consumidos en cada operación
+5. Puedo adjuntar fotos por operación
+6. Puedo registrar mediciones tomadas (torques presiones etc.)
+7. El sistema calcula tiempo total automáticamente
+8. Puedo marcar operación como completada
+9. Veo histórico de todas las operaciones de la OT
+10. Puedo editar operaciones mientras la OT está en progreso",SIPRESAS,HITO_01,1,New,Registro de Operaciones
+Feature,Control de Materiales,Gestión de materiales consumidos durante el mantenimiento,Integración con inventario y actualización automática de stock,SIPRESAS,HITO_01,2,New,Ejecución y Seguimiento
+User Story,Registrar Materiales Consumidos,"Como Técnico de Mantenimiento quiero registrar los materiales que utilicé durante el mantenimiento para mantener control de inventario y costos","1. Puedo añadir materiales consumidos durante la ejecución
+2. Puedo seleccionar material del catálogo del almacén
+3. Registro cantidad consumida y unidad de medida
+4. Puedo consumir materiales no reservados previamente
+5. El sistema valida que hay stock disponible
+6. Puedo registrar repuestos instalados con número de serie
+7. El sistema actualiza stock de almacén automáticamente
+8. Puedo registrar costo unitario si está disponible
+9. Veo resumen de materiales consumidos vs reservados
+10. Puedo editar cantidades antes de cerrar la OT",SIPRESAS,HITO_01,2,New,Control de Materiales
+Epic,Cierre y Documentación,Proceso de cierre de OT con validación generación de informes y actualización del historial. Garantiza que todos los trabajos se completen adecuadamente y quede registro permanente.,"Dependencias: BIM, Archivo Técnico",SIPRESAS,HITO_01,1,New,
+Feature,Cierre de Órdenes de Trabajo,Sistema para cerrar OT con validaciones y documentación,Workflow de cierre con checks de calidad,SIPRESAS,HITO_01,1,New,Cierre y Documentación
+User Story,Cerrar Orden de Trabajo con Validaciones,"Como Técnico de Mantenimiento quiero cerrar una OT cuando termino el trabajo para documentar la finalización del mantenimiento","1. Puedo cerrar OT solo si está en estado in_progress
+2. El sistema valida que se hayan registrado operaciones
+3. Debo confirmar que el trabajo está completado satisfactoriamente
+4. Puedo registrar observaciones finales
+5. Puedo adjuntar fotos del estado final
+6. El sistema registra automáticamente fecha y hora de cierre
+7. Debo confirmar que el equipo queda operativo
+8. Puedo marcar si se requiere seguimiento posterior
+9. Si usé materiales debo confirmar las cantidades
+10. El estado cambia a completed",SIPRESAS,HITO_01,1,New,Cierre de Órdenes de Trabajo
+Feature,Generación de Informes,Sistema para generar informes PDF profesionales de OT,PDFs con branding institucional y toda la información,SIPRESAS,HITO_01,1,New,Cierre y Documentación
+User Story,Generar Informe PDF de Orden de Trabajo,"Como Técnico de Mantenimiento quiero generar un informe PDF de la OT cerrada para tener registro documental del trabajo realizado","1. Puedo generar PDF de cualquier OT completada
+2. El PDF incluye: código fecha presa equipo responsables
+3. Incluye descripción inicial y observaciones finales
+4. Lista detallada de todas las operaciones realizadas
+5. Lista de materiales consumidos con cantidades
+6. Tiempos: programado inicio real fin real duración total
+7. Fotos de estado inicial y final (si existen)
+8. Logos institucionales (Ministerio CHG)
+9. Firma digital del técnico responsable (simulada)
+10. El PDF se almacena automáticamente en el archivo técnico",SIPRESAS,HITO_01,1,New,Generación de Informes
+User Story,Vincular Informe PDF al Modelo BIM,"Como Ingeniero de Presa quiero visualizar informes de mantenimiento desde el modelo BIM 3D para tener contexto espacial del historial de mantenimientos","1. Cada OT cerrada con PDF se vincula automáticamente al equipo en BIM
+2. Desde el módulo BIM al seleccionar un equipo veo historial de mantenimientos
+3. Puedo abrir el PDF directamente desde el visor BIM
+4. El último informe de mantenimiento aparece destacado
+5. Los informes se muestran ordenados cronológicamente
+6. Puedo filtrar por tipo de mantenimiento
+7. Veo indicador visual si el equipo tiene mantenimiento vencido
+8. El PDF se muestra embebido en el módulo BIM
+9. Puedo descargar el PDF si lo necesito
+10. La vinculación se mantiene aunque cambie el equipo de ubicación",SIPRESAS,HITO_01,2,New,Generación de Informes
+Feature,Workflow de Aprobaciones,Sistema de aprobación de cierre para OT críticas,Workflow con estados de aprobación y rechazos,SIPRESAS,HITO_01,2,New,Cierre y Documentación
+User Story,Aprobar Cierre de Orden de Trabajo,"Como Jefe de Mantenimiento quiero revisar y aprobar el cierre de OT críticas para validar que el trabajo se hizo correctamente","1. Las OT de equipos críticos requieren aprobación de cierre
+2. Recibo notificación cuando una OT crítica se marca como completada
+3. Puedo ver todos los detalles de la OT completada
+4. Puedo ver el PDF generado antes de aprobar
+5. Puedo aprobar el cierre si todo está correcto
+6. Puedo rechazar el cierre con comentarios si hay problemas
+7. Si rechazo la OT vuelve a estado in_progress
+8. El técnico recibe notificación del rechazo con comentarios
+9. Una vez aprobada la OT queda definitivamente cerrada
+10. Se registra quién aprobó y cuándo",SIPRESAS,HITO_01,2,New,Workflow de Aprobaciones
+Epic,Indicadores y Analítica,KPIs de mantenimiento análisis de tendencias y reportes gerenciales. Soporte a la toma de decisiones basada en datos.,"Dependencias: Inventario, Auscultación",SIPRESAS,HITO_01,2,New,
+Feature,Dashboard de Mantenimiento,Panel de control con KPIs principales del módulo,Gráficos interactivos con métricas clave,SIPRESAS,HITO_01,2,New,Indicadores y Analítica
+User Story,Dashboard de KPIs de Mantenimiento,"Como Jefe de Mantenimiento quiero ver indicadores clave de desempeño para evaluar la eficiencia del equipo de mantenimiento","1. Veo número total de OT por estado (pendientes en progreso completadas)
+2. Veo tasa de cumplimiento de SLA
+3. Veo tiempo promedio de resolución por tipo de mantenimiento
+4. Veo tasa de mantenimientos preventivos vs correctivos
+5. Veo equipos con más incidencias
+6. Veo disponibilidad de equipos críticos (MTBF/MTTR)
+7. Veo costo total de mantenimientos por presa
+8. Veo productividad por técnico
+9. Puedo filtrar por presa y rango de fechas
+10. Puedo exportar métricas a Excel",SIPRESAS,HITO_01,2,New,Dashboard de Mantenimiento
+Feature,Análisis de Tendencias,Herramientas para analizar patrones y tendencias de fallos,Análisis estadístico y detección de anomalías,SIPRESAS,HITO_01,2,New,Indicadores y Analítica
+User Story,Análisis de Tendencias de Fallos,"Como Ingeniero de Mantenimiento quiero visualizar tendencias de fallos por equipo para identificar problemas recurrentes y tomar acciones preventivas","1. Veo gráfico de línea con fallos por mes/trimestre
+2. Puedo filtrar por tipo de equipo o equipo específico
+3. Veo tipos de fallo más frecuentes
+4. Veo equipos con mayor tasa de fallos
+5. Puedo comparar múltiples equipos en el mismo gráfico
+6. Veo correlación entre fallos y condiciones operativas
+7. Veo alertas de equipos con tendencia creciente de fallos
+8. Puedo exportar gráficos a imagen
+9. Veo recomendaciones automáticas basadas en tendencias
+10. Integración con datos de auscultación si disponibles",SIPRESAS,HITO_01,2,New,Análisis de Tendencias
+Feature,Historial de Equipos,Vista de historial completo de mantenimientos por equipo,Integración con módulo de inventario,SIPRESAS,HITO_01,2,New,Indicadores y Analítica
+User Story,Historial Completo de Mantenimiento por Equipo,"Como Ingeniero de Presa quiero ver el historial completo de mantenimientos de un equipo para conocer su trayectoria y planificar reemplazo","1. Desde el detalle de un equipo en Inventario veo todas sus OT
+2. Veo línea de tiempo con todas las intervenciones
+3. Puedo filtrar por tipo de mantenimiento
+4. Veo resumen: total de intervenciones última intervención próxima programada
+5. Puedo abrir el detalle de cada OT históricas
+6. Puedo descargar PDFs de informes históricos
+7. Veo estadísticas: tiempo total de paradas costo total invertido
+8. Veo gráfico de vida útil vs vida útil esperada
+9. Veo alertas si el equipo supera vida útil recomendada
+10. Exportar historial completo a PDF",SIPRESAS,HITO_01,2,New,Historial de Equipos
+Feature,Reportes de Costos,Sistema de reportes financieros de mantenimiento,Análisis de costos con desglose detallado,SIPRESAS,HITO_01,3,New,Indicadores y Analítica
+User Story,Reporte de Costos de Mantenimiento,"Como Gerente Administrativo quiero generar reportes de costos de mantenimiento para controlar presupuesto y justificar inversiones","1. Puedo generar reporte de costos por presa
+2. Puedo filtrar por rango de fechas
+3. Veo desglose: mano de obra materiales servicios externos
+4. Veo comparativa presupuestado vs ejecutado
+5. Veo costos por tipo de mantenimiento
+6. Veo top 10 equipos con mayor costo de mantenimiento
+7. Veo proyección de costos futuros basado en preventivos programados
+8. Puedo exportar reporte a Excel y PDF
+9. Veo gráficos de evolución mensual de costos
+10. Alertas si se supera presupuesto asignado",SIPRESAS,HITO_01,3,New,Reportes de Costos
+Epic,Funcionalidades Avanzadas,Capacidades avanzadas de IA mantenimiento predictivo y movilidad. Mejora la eficiencia operativa y permite trabajo en campo.,"Dependencias: Auscultación, ML Infrastructure",SIPRESAS,HITO_01,3,New,
+Feature,Mantenimiento Predictivo,Sistema de IA para predecir fallos antes de que ocurran,Machine Learning integrado con auscultación,SIPRESAS,HITO_01,3,New,Funcionalidades Avanzadas
+User Story,Mantenimiento Predictivo con Machine Learning,"Como Ingeniero de Mantenimiento quiero recibir alertas predictivas de fallos potenciales para actuar antes de que ocurra el fallo","1. El sistema analiza datos de auscultación en tiempo real
+2. Detecta patrones anómalos que indican posible fallo
+3. Genera alerta predictiva con nivel de confianza
+4. Sugiere crear OT preventiva automáticamente
+5. Explica qué parámetros indican el riesgo
+6. Aprende de fallos históricos para mejorar predicciones
+7. Integración completa con módulo de Auscultación
+8. Dashboard de alertas predictivas
+9. Historial de aciertos/fallos del modelo predictivo
+10. Configuración de sensibilidad de alertas",SIPRESAS,HITO_01,3,New,Mantenimiento Predictivo
+Feature,Aplicación Móvil,App nativa para técnicos de campo,Aplicación iOS/Android con funcionalidad offline,SIPRESAS,HITO_01,3,New,Funcionalidades Avanzadas
+User Story,App Móvil para Técnicos en Campo,"Como Técnico de Mantenimiento quiero usar app móvil para registrar mantenimientos para trabajar sin necesidad de ordenador","1. Descargo app en iOS/Android
+2. Inicio sesión con mis credenciales
+3. Veo mis OT asignadas del día
+4. Puedo iniciar/pausar/completar OT desde el móvil
+5. Puedo tomar fotos directamente con la cámara
+6. Puedo registrar operaciones por voz (speech-to-text)
+7. Funciona offline y sincroniza cuando hay conexión
+8. Recibo notificaciones push de OT urgentes
+9. Puedo escanear QR de equipos para registrar rápido
+10. Puedo consultar procedimientos de trabajo offline",SIPRESAS,HITO_01,3,New,Aplicación Móvil
+Feature,Integración GMAO,Conectores para sincronizar con sistemas corporativos externos,API REST para integración bidireccional,SIPRESAS,HITO_01,3,New,Funcionalidades Avanzadas
+User Story,Integración con GMAO Corporativo,"Como Administrador del Sistema quiero sincronizar datos con GMAO corporativo para mantener consistencia entre sistemas","1. Sincronización bidireccional de OT con GMAO externo
+2. Mapeo de campos entre SIPRESAS y GMAO
+3. Sincronización en tiempo real o batch programado
+4. Manejo de conflictos de datos
+5. Log de todas las sincronizaciones
+6. Alertas si falla la sincronización
+7. Configuración de qué datos se sincronizan
+8. Soporte para múltiples GMAO (SAP Maximo etc.)
+9. API REST para integración
+10. Documentación completa de la API",SIPRESAS,HITO_01,3,New,Integración GMAO

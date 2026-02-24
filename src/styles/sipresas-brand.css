@@ -1,0 +1,453 @@
+/**
+ * SIPRESAS - Sistema de Información de Presas
+ * Guía de Identidad Visual Corporativa
+ * Versión 1.0 - Enero 2026
+ *
+ * Colores Institucionales:
+ * - Azul Primario: #1e5a8e
+ * - Azul Secundario: #2874b5
+ * - Aqua Hidráulico: #06b6d4
+ *
+ * Colores Funcionales:
+ * - Verde (Éxito): #16a34a
+ * - Amarillo (Advertencia): #ca8a04
+ * - Naranja (Alerta): #ea580c
+ * - Rojo (Error): #dc2626
+ * - Azul (Info): #3b82f6
+ *
+ * Tipografía: Inter, system-ui, sans-serif
+ * Estilo: Sobrio, Institucional, Profesional
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Colores Institucionales */
+  --sipresas-darker: #082841;
+  --sipresas-dark: #0d3859;
+  --sipresas-primary: #1e5a8e;
+  --sipresas-secondary: #2874b5;
+  --sipresas-light: #4a9fd8;
+  --sipresas-lighter: #a4c8e1;
+  --sipresas-lightest: #e8f2f9;
+
+  /* Colores Hidráulicos */
+  --aqua-dark: #0e7490;
+  --aqua: #06b6d4;
+  --aqua-medium: #22d3ee;
+  --aqua-light: #67e8f9;
+  --aqua-lighter: #cffafe;
+
+  /* Colores Funcionales - Éxito */
+  --success-dark: #15803d;
+  --success: #16a34a;
+  --success-medium: #22c55e;
+  --success-light: #86efac;
+  --success-lighter: #dcfce7;
+
+  /* Colores Funcionales - Advertencia */
+  --warning-dark: #b45309;
+  --warning: #ca8a04;
+  --warning-medium: #eab308;
+  --warning-light: #fde047;
+  --warning-lighter: #fef9c3;
+
+  /* Colores Funcionales - Alerta */
+  --alert-dark: #c2410c;
+  --alert: #ea580c;
+  --alert-medium: #f97316;
+  --alert-light: #fdba74;
+  --alert-lighter: #ffedd5;
+
+  /* Colores Funcionales - Error */
+  --error-dark: #b91c1c;
+  --error: #dc2626;
+  --error-medium: #ef4444;
+  --error-light: #fca5a5;
+  --error-lighter: #fee2e2;
+
+  /* Colores Funcionales - Info */
+  --info-dark: #1e40af;
+  --info: #3b82f6;
+  --info-medium: #60a5fa;
+  --info-light: #bfdbfe;
+  --info-lighter: #eff6ff;
+
+  /* Neutrales */
+  --gray-darkest: #1f2937;
+  --gray-dark: #374151;
+  --gray-medium: #6b7280;
+  --gray-light: #d1d5db;
+  --gray-lighter: #e5e7eb;
+  --gray-lightest: #f3f4f6;
+}
+
+* {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ======================
+   BOTONES
+   ====================== */
+
+.btn-sipresas-primary {
+  @apply px-4 py-2 bg-sipresas-primary hover:bg-sipresas-secondary text-white font-medium rounded transition-colors shadow-sm;
+}
+
+.btn-sipresas-secondary {
+  @apply px-4 py-2 bg-white hover:bg-sipresas-lightest text-sipresas-primary border-2 border-sipresas-primary font-medium rounded transition-colors;
+}
+
+.btn-sipresas-outline {
+  @apply px-4 py-2 bg-transparent hover:bg-sipresas-lightest text-sipresas-primary border border-sipresas-lighter font-medium rounded transition-colors;
+}
+
+.btn-sipresas-success {
+  @apply px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded transition-colors shadow-sm;
+}
+
+.btn-sipresas-danger {
+  @apply px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded transition-colors shadow-sm;
+}
+
+.btn-sipresas-warning {
+  @apply px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-medium rounded transition-colors shadow-sm;
+}
+
+/* ======================
+   TABLAS
+   ====================== */
+
+.table-sipresas {
+  @apply w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden;
+}
+
+.table-sipresas thead {
+  @apply bg-sipresas-lightest;
+}
+
+.table-sipresas th {
+  @apply px-4 py-3 text-left text-xs font-semibold text-sipresas-dark uppercase tracking-wider border-b border-sipresas-lighter;
+}
+
+.table-sipresas td {
+  @apply px-4 py-3 text-sm text-gray-700 border-b border-gray-100;
+}
+
+.table-sipresas tbody tr:hover {
+  @apply bg-sipresas-lightest/30 transition-colors;
+}
+
+/* ======================
+   ALERTAS
+   ====================== */
+
+.alert-sipresas {
+  @apply px-4 py-3 rounded-r;
+}
+
+.alert-sipresas-info {
+  @apply alert-sipresas bg-blue-50 border-l-4 border-blue-600 text-blue-900;
+}
+
+.alert-sipresas-success {
+  @apply alert-sipresas bg-green-50 border-l-4 border-green-600 text-green-900;
+}
+
+.alert-sipresas-warning {
+  @apply alert-sipresas bg-yellow-50 border-l-4 border-yellow-600 text-yellow-900;
+}
+
+.alert-sipresas-alert {
+  @apply alert-sipresas bg-orange-50 border-l-4 border-orange-600 text-orange-900;
+}
+
+.alert-sipresas-error {
+  @apply alert-sipresas bg-red-50 border-l-4 border-red-600 text-red-900;
+}
+
+/* ======================
+   TARJETAS
+   ====================== */
+
+.card-sipresas {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+}
+
+.card-sipresas-header {
+  @apply border-b border-gray-200 bg-sipresas-lightest/30 px-6 py-4 rounded-t-lg;
+}
+
+.card-sipresas-body {
+  @apply px-6 py-4;
+}
+
+.card-sipresas-footer {
+  @apply border-t border-gray-200 px-6 py-4 bg-gray-50 rounded-b-lg;
+}
+
+/* ======================
+   INPUTS
+   ====================== */
+
+.input-sipresas {
+  @apply w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-sipresas-light focus:border-transparent transition-all;
+}
+
+.input-sipresas-error {
+  @apply input-sipresas border-red-300 focus:ring-red-500;
+}
+
+.input-sipresas-success {
+  @apply input-sipresas border-green-300 focus:ring-green-500;
+}
+
+.select-sipresas {
+  @apply input-sipresas appearance-none bg-no-repeat bg-right pr-10;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+}
+
+.textarea-sipresas {
+  @apply input-sipresas resize-none;
+}
+
+/* ======================
+   BADGES
+   ====================== */
+
+.badge-sipresas {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border;
+}
+
+.badge-sipresas-primary {
+  @apply badge-sipresas bg-sipresas-lightest text-sipresas-primary border-sipresas-lighter;
+}
+
+.badge-sipresas-success {
+  @apply badge-sipresas bg-green-100 text-green-800 border-green-300;
+}
+
+.badge-sipresas-warning {
+  @apply badge-sipresas bg-yellow-100 text-yellow-800 border-yellow-300;
+}
+
+.badge-sipresas-alert {
+  @apply badge-sipresas bg-orange-100 text-orange-800 border-orange-300;
+}
+
+.badge-sipresas-error {
+  @apply badge-sipresas bg-red-100 text-red-800 border-red-300;
+}
+
+.badge-sipresas-info {
+  @apply badge-sipresas bg-blue-100 text-blue-800 border-blue-300;
+}
+
+.badge-sipresas-aqua {
+  @apply badge-sipresas bg-cyan-100 text-cyan-800 border-cyan-300;
+}
+
+/* ======================
+   ESTADOS OPERACIONALES
+   ====================== */
+
+.status-operational {
+  @apply bg-green-100 text-green-800 border border-green-300 px-3 py-1 rounded-full text-xs font-medium inline-flex items-center gap-1;
+}
+
+.status-maintenance {
+  @apply bg-sipresas-lightest text-sipresas-primary border border-sipresas-lighter px-3 py-1 rounded-full text-xs font-medium inline-flex items-center gap-1;
+}
+
+.status-alert {
+  @apply bg-yellow-100 text-yellow-800 border border-yellow-300 px-3 py-1 rounded-full text-xs font-medium inline-flex items-center gap-1;
+}
+
+.status-warning {
+  @apply bg-orange-100 text-orange-800 border border-orange-300 px-3 py-1 rounded-full text-xs font-medium inline-flex items-center gap-1;
+}
+
+.status-emergency {
+  @apply bg-red-100 text-red-800 border border-red-300 px-3 py-1 rounded-full text-xs font-medium inline-flex items-center gap-1;
+}
+
+/* ======================
+   NIVELES DE SEVERIDAD
+   ====================== */
+
+.severity-low {
+  @apply text-green-600 font-medium;
+}
+
+.severity-medium {
+  @apply text-yellow-600 font-medium;
+}
+
+.severity-high {
+  @apply text-orange-600 font-medium;
+}
+
+.severity-critical {
+  @apply text-red-600 font-medium;
+}
+
+/* ======================
+   TIPOGRAFÍA
+   ====================== */
+
+.header-sipresas {
+  @apply text-2xl font-bold text-sipresas-darker mb-2;
+}
+
+.subheader-sipresas {
+  @apply text-lg font-semibold text-sipresas-primary mb-4;
+}
+
+.title-sipresas {
+  @apply text-base font-semibold text-sipresas-dark;
+}
+
+.text-sipresas-muted {
+  @apply text-gray-600 text-sm;
+}
+
+.text-sipresas-small {
+  @apply text-xs text-gray-500;
+}
+
+/* ======================
+   INDICADORES DE NIVEL
+   ====================== */
+
+.level-indicator {
+  @apply flex items-center gap-2;
+}
+
+.level-bar {
+  @apply w-full bg-gray-200 rounded-full h-2;
+}
+
+.level-fill-critical-high {
+  @apply bg-red-600 h-2 rounded-full transition-all;
+}
+
+.level-fill-high {
+  @apply bg-orange-500 h-2 rounded-full transition-all;
+}
+
+.level-fill-optimal {
+  @apply bg-green-600 h-2 rounded-full transition-all;
+}
+
+.level-fill-normal {
+  @apply bg-sipresas-secondary h-2 rounded-full transition-all;
+}
+
+.level-fill-low {
+  @apply bg-yellow-500 h-2 rounded-full transition-all;
+}
+
+.level-fill-critical-low {
+  @apply bg-red-600 h-2 rounded-full transition-all;
+}
+
+/* ======================
+   ICONOS DE ESTADO
+   ====================== */
+
+.icon-operational {
+  @apply text-green-600;
+}
+
+.icon-maintenance {
+  @apply text-sipresas-primary;
+}
+
+.icon-alert {
+  @apply text-yellow-600;
+}
+
+.icon-warning {
+  @apply text-orange-600;
+}
+
+.icon-emergency {
+  @apply text-red-600;
+}
+
+.icon-info {
+  @apply text-blue-600;
+}
+
+/* ======================
+   UTILIDADES
+   ====================== */
+
+.container-sipresas {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.section-sipresas {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6;
+}
+
+.divider-sipresas {
+  @apply border-t border-gray-200 my-4;
+}
+
+.hover-sipresas {
+  @apply transition-all hover:bg-sipresas-lightest/30 cursor-pointer;
+}
+
+/* ======================
+   GRADIENTES
+   ====================== */
+
+.gradient-header {
+  @apply bg-gradient-to-r from-sipresas-darker via-sipresas-primary to-sipresas-secondary;
+}
+
+.gradient-aqua {
+  @apply bg-gradient-to-br from-aqua via-aqua-medium to-aqua-dark;
+}
+
+.gradient-success {
+  @apply bg-gradient-to-r from-green-500 to-green-600;
+}
+
+.gradient-warning {
+  @apply bg-gradient-to-r from-yellow-500 to-yellow-600;
+}
+
+.gradient-error {
+  @apply bg-gradient-to-r from-red-500 to-red-600;
+}
+
+/* ======================
+   ACCESIBILIDAD
+   ====================== */
+
+.focus-sipresas {
+  @apply focus:outline-none focus:ring-2 focus:ring-sipresas-light focus:ring-offset-2;
+}
+
+.focus-visible-sipresas {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sipresas-light focus-visible:ring-offset-2;
+}
+
+/* Skip to content link */
+.skip-to-content {
+  @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-sipresas-primary focus:text-white focus:rounded;
+}
+
+/* ======================
+   RESPONSIVE
+   ====================== */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
