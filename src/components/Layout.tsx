@@ -49,7 +49,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     { path: '/incidents', icon: AlertTriangle, label: 'Incidencias', section: 'Seguridad', requiresDam: true },
     { path: '/bim-viewer', icon: Box, label: 'Visualizador BIM', section: 'Modelos', requiresDam: true },
     { path: '/bim', icon: Box, label: 'Gestión BIM', section: 'Modelos', requiresDam: true },
-    { path: '/control-center', icon: LayoutIcon, label: 'Centro de Control Integral', section: 'Control', requiresDam: true },
     { path: '/analytics', icon: BarChart3, label: 'Análisis y Reportes' },
     { path: '/settings', icon: Settings, label: 'Configuración' }
   ];
@@ -461,46 +460,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
               <div className="mb-4">
                 <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2 px-2">Modelos</h4>
                 {navItems.filter(item => item.section === 'Modelos').map((item) => {
-                  const Icon = item.icon;
-                  const isActive = location.pathname === item.path;
-                  const isDisabled = item.requiresDam && !selectedDam;
-
-                  if (isDisabled) {
-                    return (
-                      <div
-                        key={item.path}
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-md mb-1 text-sm text-gray-400 cursor-not-allowed opacity-50"
-                        title="Seleccione una presa primero"
-                      >
-                        <Icon size={16} />
-                        <span>{item.label}</span>
-                      </div>
-                    );
-                  }
-
-                  return (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      onClick={() => setSidebarOpen(false)}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-md mb-1 transition-all text-sm ${
-                        isActive
-                          ? 'bg-[#0066A1] text-white shadow-sm'
-                          : 'text-gray-700 hover:bg-blue-50 hover:text-[#0066A1]'
-                      }`}
-                    >
-                      <Icon size={16} />
-                      <span>{item.label}</span>
-                      <ChevronRight size={14} className="ml-auto" />
-                    </Link>
-                  );
-                })}
-              </div>
-
-              {/* Control */}
-              <div className="mb-4">
-                <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2 px-2">Control</h4>
-                {navItems.filter(item => item.section === 'Control').map((item) => {
                   const Icon = item.icon;
                   const isActive = location.pathname === item.path;
                   const isDisabled = item.requiresDam && !selectedDam;

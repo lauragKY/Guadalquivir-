@@ -13,7 +13,6 @@ import Auscultation from './pages/Auscultation';
 import Exploitation from './pages/Exploitation';
 import BIM from './pages/BIM';
 import BIMViewer from './pages/BIMViewer';
-import ControlCenter from './pages/ControlCenter';
 import EmergencyManagement from './pages/EmergencyManagement';
 import Incidents from './pages/Incidents';
 import Map from './pages/Map';
@@ -47,7 +46,6 @@ function App() {
                       <Route path="/exploitation" element={<Exploitation />} />
                       <Route path="/bim" element={<BIM />} />
                       <Route path="/bim-viewer" element={<BIMViewer />} />
-                      <Route path="/control-center" element={<ControlCenter />} />
                       <Route path="/emergency" element={<EmergencyManagement />} />
                       <Route path="/incidents" element={<Incidents />} />
                       <Route path="/analytics" element={<Analytics />} />
