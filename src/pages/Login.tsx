@@ -172,6 +172,14 @@ export default function Login() {
                 </button>
               </form>
 
+              {/* Botón de configuración */}
+              <a
+                href="/setup-demo"
+                className="block w-full mt-4 text-center bg-blue-50 hover:bg-blue-100 text-[#0066A1] font-medium py-2 px-4 rounded-md border border-blue-200 transition-colors text-sm"
+              >
+                Configurar Usuarios de Demostración
+              </a>
+
               {/* Credenciales de demostración */}
               <div className="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md">
                 <p className="text-xs font-semibold text-gray-700 mb-2">
