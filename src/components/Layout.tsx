@@ -40,16 +40,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navItems = [
     { path: '/map', icon: Map, label: 'Seleccionar Presa' },
     { path: '/dashboard', icon: Home, label: 'Ficha Principal', requiresDam: true },
-    { path: '/inventory', icon: Package, label: 'Inventario de Presas', section: 'Gestión', requiresDam: true },
-    { path: '/maintenance', icon: Wrench, label: 'Mantenimiento', section: 'Gestión', requiresDam: true },
-    { path: '/technical-archive', icon: FolderOpen, label: 'Archivo Técnico', section: 'Documentación', requiresDam: true },
-    { path: '/auscultation', icon: Activity, label: 'Auscultación', section: 'Monitorización', requiresDam: true },
-    { path: '/exploitation', icon: TrendingUp, label: 'Explotación', section: 'Monitorización', requiresDam: true },
-    { path: '/emergency', icon: Shield, label: 'Gestión de Emergencias', section: 'Seguridad', requiresDam: true },
-    { path: '/incidents', icon: AlertTriangle, label: 'Incidencias', section: 'Seguridad', requiresDam: true },
-    { path: '/bim-viewer', icon: Box, label: 'Visualizador BIM', section: 'Modelos', requiresDam: true },
-    { path: '/bim', icon: Box, label: 'Gestión BIM', section: 'Modelos', requiresDam: true },
-    { path: '/analytics', icon: BarChart3, label: 'Análisis y Reportes' },
+    { path: '/inventory', icon: Package, label: 'Inventario', section: 'Módulos', requiresDam: true },
+    { path: '/maintenance', icon: Wrench, label: 'Mantenimiento', section: 'Módulos', requiresDam: true },
+    { path: '/technical-archive', icon: FolderOpen, label: 'Archivo Técnico', section: 'Módulos', requiresDam: true },
+    { path: '/exploitation', icon: TrendingUp, label: 'Explotación', section: 'Módulos', requiresDam: true },
+    { path: '/emergency', icon: Shield, label: 'Gestión de Emergencias', section: 'Módulos', requiresDam: true },
+    { path: '/bim', icon: Box, label: 'BIM', section: 'Módulos', requiresDam: true },
     { path: '/settings', icon: Settings, label: 'Configuración' }
   ];
 
@@ -296,10 +292,10 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 })}
               </div>
 
-              {/* Gestión */}
+              {/* Módulos */}
               <div className="mb-4">
-                <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2 px-2">Gestión</h4>
-                {navItems.filter(item => item.section === 'Gestión').map((item) => {
+                <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2 px-2">Módulos</h4>
+                {navItems.filter(item => item.section === 'Módulos').map((item) => {
                   const Icon = item.icon;
                   const isActive = location.pathname === item.path;
                   const isDisabled = item.requiresDam && !selectedDam;
@@ -336,130 +332,10 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 })}
               </div>
 
-              {/* Monitorización */}
-              <div className="mb-4">
-                <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2 px-2">Monitorización</h4>
-                {navItems.filter(item => item.section === 'Monitorización').map((item) => {
-                  const Icon = item.icon;
-                  const isActive = location.pathname === item.path;
-                  const isDisabled = item.requiresDam && !selectedDam;
-
-                  if (isDisabled) {
-                    return (
-                      <div
-                        key={item.path}
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-md mb-1 text-sm text-gray-400 cursor-not-allowed opacity-50"
-                        title="Seleccione una presa primero"
-                      >
-                        <Icon size={16} />
-                        <span>{item.label}</span>
-                      </div>
-                    );
-                  }
-
-                  return (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      onClick={() => setSidebarOpen(false)}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-md mb-1 transition-all text-sm ${
-                        isActive
-                          ? 'bg-[#0066A1] text-white shadow-sm'
-                          : 'text-gray-700 hover:bg-blue-50 hover:text-[#0066A1]'
-                      }`}
-                    >
-                      <Icon size={16} />
-                      <span>{item.label}</span>
-                      <ChevronRight size={14} className="ml-auto" />
-                    </Link>
-                  );
-                })}
-              </div>
-
-              {/* Seguridad */}
-              <div className="mb-4">
-                <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2 px-2">Seguridad</h4>
-                {navItems.filter(item => item.section === 'Seguridad').map((item) => {
-                  const Icon = item.icon;
-                  const isActive = location.pathname === item.path;
-                  const isDisabled = item.requiresDam && !selectedDam;
-
-                  if (isDisabled) {
-                    return (
-                      <div
-                        key={item.path}
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-md mb-1 text-sm text-gray-400 cursor-not-allowed opacity-50"
-                        title="Seleccione una presa primero"
-                      >
-                        <Icon size={16} />
-                        <span>{item.label}</span>
-                      </div>
-                    );
-                  }
-
-                  return (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      onClick={() => setSidebarOpen(false)}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-md mb-1 transition-all text-sm ${
-                        isActive
-                          ? 'bg-[#0066A1] text-white shadow-sm'
-                          : 'text-gray-700 hover:bg-blue-50 hover:text-[#0066A1]'
-                      }`}
-                    >
-                      <Icon size={16} />
-                      <span>{item.label}</span>
-                      <ChevronRight size={14} className="ml-auto" />
-                    </Link>
-                  );
-                })}
-              </div>
-
-              {/* Otros módulos */}
+              {/* Otros */}
               <div className="mb-4">
                 <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2 px-2">Otros</h4>
-                {navItems.filter(item => !item.section && item.section !== 'Modelos').slice(2).map((item) => {
-                  const Icon = item.icon;
-                  const isActive = location.pathname === item.path;
-                  const isDisabled = item.requiresDam && !selectedDam;
-
-                  if (isDisabled) {
-                    return (
-                      <div
-                        key={item.path}
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-md mb-1 text-sm text-gray-400 cursor-not-allowed opacity-50"
-                        title="Seleccione una presa primero"
-                      >
-                        <Icon size={16} />
-                        <span>{item.label}</span>
-                      </div>
-                    );
-                  }
-
-                  return (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      onClick={() => setSidebarOpen(false)}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-md mb-1 transition-all text-sm ${
-                        isActive
-                          ? 'bg-[#0066A1] text-white shadow-sm'
-                          : 'text-gray-700 hover:bg-blue-50 hover:text-[#0066A1]'
-                      }`}
-                    >
-                      <Icon size={16} />
-                      <span>{item.label}</span>
-                      <ChevronRight size={14} className="ml-auto" />
-                    </Link>
-                  );
-                })}
-              </div>
-
-              {/* Modelos */}
-              <div className="mb-4">
-                <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2 px-2">Modelos</h4>
-                {navItems.filter(item => item.section === 'Modelos').map((item) => {
+                {navItems.filter(item => !item.section).slice(2).map((item) => {
                   const Icon = item.icon;
                   const isActive = location.pathname === item.path;
                   const isDisabled = item.requiresDam && !selectedDam;
