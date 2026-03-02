@@ -9,6 +9,7 @@ import DamDetail from './pages/DamDetail';
 import Inventory from './pages/Inventory';
 import Maintenance from './pages/Maintenance';
 import TechnicalArchive from './pages/TechnicalArchive';
+import Auscultation from './pages/Auscultation';
 import Exploitation from './pages/Exploitation';
 import BIM from './pages/BIM';
 import EmergencyManagement from './pages/EmergencyManagement';
@@ -38,9 +39,10 @@ function App() {
                       <Route path="/inventory" element={<Inventory />} />
                       <Route path="/maintenance" element={<Maintenance />} />
                       <Route path="/technical-archive" element={<TechnicalArchive />} />
+                      <Route path="/auscultation" element={<Auscultation />} />
                       <Route path="/exploitation" element={<Exploitation />} />
-                      <Route path="/bim" element={<BIM />} />
                       <Route path="/emergency" element={<EmergencyManagement />} />
+                      <Route path="/bim" element={<BIM />} />
                       <Route path="/settings" element={<Settings />} />
                       <Route path="/color-palette" element={<ColorPalette />} />
                     </Routes>

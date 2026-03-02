@@ -43,6 +43,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     { path: '/inventory', icon: Package, label: 'Inventario', section: 'Módulos', requiresDam: true },
     { path: '/maintenance', icon: Wrench, label: 'Mantenimiento', section: 'Módulos', requiresDam: true },
     { path: '/technical-archive', icon: FolderOpen, label: 'Archivo Técnico', section: 'Módulos', requiresDam: true },
+    { path: '/auscultation', icon: Activity, label: 'Auscultación', section: 'Módulos', requiresDam: true },
     { path: '/exploitation', icon: TrendingUp, label: 'Explotación', section: 'Módulos', requiresDam: true },
     { path: '/emergency', icon: Shield, label: 'Gestión de Emergencias', section: 'Módulos', requiresDam: true },
     { path: '/bim', icon: Box, label: 'BIM', section: 'Módulos', requiresDam: true },
