@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDamSelection } from '../contexts/DamSelectionContext';
-import { AlertTriangle, Activity, Radio, Shield, ClipboardList, Send, BookOpen, ChevronRight } from 'lucide-react';
+import { AlertTriangle, Activity, Radio, Shield, ClipboardList, Send, BookOpen, ChevronRight, Settings } from 'lucide-react';
 import type { EmergencyState, EmergencyAction, Recipient, CommunicationRecord } from './emergency/types';
 import {
   INITIAL_EMERGENCY_STATE,
@@ -15,8 +15,9 @@ import Screen2Declaracion from './emergency/Screen2Declaracion';
 import Screen3Actuaciones from './emergency/Screen3Actuaciones';
 import Screen4Comunicacion from './emergency/Screen4Comunicacion';
 import Screen5Registro from './emergency/Screen5Registro';
+import ScreenConfigPlan from './emergency/ScreenConfigPlan';
 
-type Screen = 'situacion' | 'declaracion' | 'actuaciones' | 'comunicacion' | 'registro' | 'sirenas';
+type Screen = 'situacion' | 'declaracion' | 'actuaciones' | 'comunicacion' | 'registro' | 'sirenas' | 'config';
 
 const SIRENAS = [
   { id: 's1',  code: 'SIR-001', name: 'Núcleo urbano Hornachuelos',   status: 'operativa',  lastCheck: '2026-05-12' },
@@ -150,6 +151,22 @@ export default function EmergencyManagement() {
               </div>
               <span className="text-sm font-medium">Equipos de aviso</span>
             </button>
+
+            <button
+              onClick={() => setActiveScreen('config')}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
+                activeScreen === 'config'
+                  ? 'bg-blue-600 text-white'
+                  : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
+              }`}
+            >
+              <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
+                activeScreen === 'config' ? 'bg-blue-500' : 'bg-slate-700'
+              }`}>
+                <Settings size={12} className="text-white" />
+              </div>
+              <span className="text-sm font-medium">Configuración del Plan</span>
+            </button>
           </div>
         </nav>
 
@@ -167,7 +184,8 @@ export default function EmergencyManagement() {
             <span>Emergencias</span>
             <ChevronRight size={12} />
             <span className="font-semibold text-slate-700">
-              {STEPS.find(s => s.id === activeScreen)?.label || 'Equipos de aviso'}
+              {STEPS.find(s => s.id === activeScreen)?.label ||
+              (activeScreen === 'config' ? 'Configuración del Plan' : 'Equipos de aviso')}
             </span>
           </div>
 
@@ -216,6 +234,10 @@ export default function EmergencyManagement() {
 
           {activeScreen === 'sirenas' && (
             <SirenasPanel />
+          )}
+
+          {activeScreen === 'config' && (
+            <ScreenConfigPlan />
           )}
         </div>
       </main>
