@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Wrench, Calendar, Filter, Plus, CheckCircle, Clock, AlertCircle, XCircle, FileText, Download, Lock, Unlock, Trash2, Edit, Save, GripVertical, Send } from 'lucide-react';
+import { Wrench, Calendar, Filter, Plus, CheckCircle, Clock, AlertCircle, XCircle, FileText, Download, Lock, Trash2, CreditCard as Edit, Save, Send, ChevronDown, ChevronUp, Package } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
-import { MaintenanceWorkOrder } from '../types';
-import { getMaintenanceWorkOrders, getDams } from '../services/api';
+import { MaintenanceWorkOrder, MaintenanceReport } from '../types';
+import { getMaintenanceWorkOrders, getDams, getMaintenanceReport } from '../services/api';
 import { supabase } from '../lib/supabase';
 import MaintenanceOperationsManager from '../components/MaintenanceOperationsManager';
-import { generateMaintenancePDF, sendPDFToBIM } from '../services/pdfGenerationService';
 
 const MONTHS = [
   'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -42,6 +41,8 @@ export default function Maintenance() {
   const [processingPDF, setProcessingPDF] = useState(false);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [editingOrder, setEditingOrder] = useState<MaintenanceWorkOrder | null>(null);
+  const [selectedReport, setSelectedReport] = useState<MaintenanceReport | null>(null);
+  const [loadingReport, setLoadingReport] = useState(false);
   const [newOrder, setNewOrder] = useState({
     order_type: 'preventive',
     periodicity: 'monthly',
@@ -57,6 +58,22 @@ export default function Maintenance() {
     periodicity: 'all',
     personnelType: 'all',
   });
+
+  const selectOrder = async (order: MaintenanceWorkOrder) => {
+    setSelectedOrder(order);
+    setSelectedReport(null);
+    if (order.status === 'completed') {
+      setLoadingReport(true);
+      try {
+        const report = await getMaintenanceReport(order.id);
+        setSelectedReport(report);
+      } catch (e) {
+        console.error('Error loading report', e);
+      } finally {
+        setLoadingReport(false);
+      }
+    }
+  };
 
   useEffect(() => {
     loadDams();
@@ -185,35 +202,27 @@ export default function Maintenance() {
       const { data: user } = await supabase.auth.getUser();
       if (!user.user) throw new Error('User not authenticated');
 
-      await supabase
+      const { error: updateError } = await supabase
         .from('maintenance_work_orders')
         .update({
           status: 'completed',
-          is_closed: true,
-          closed_at: new Date().toISOString()
+          completed_at: new Date().toISOString()
         })
         .eq('id', selectedOrder.id);
 
-      const pdfPath = await generateMaintenancePDF(selectedOrder.id);
+      if (updateError) throw updateError;
 
-      const { error: closureError } = await supabase
-        .from('maintenance_work_order_closure')
-        .insert({
+      if (closureObservations.trim()) {
+        await supabase.from('maintenance_reports').insert({
           work_order_id: selectedOrder.id,
-          closed_by: user.user.id,
-          pdf_generated: true,
-          pdf_file_path: pdfPath,
-          observations: closureObservations || null
+          performed_by: user.user.id,
+          performed_at: new Date().toISOString(),
+          duration_minutes: 0,
+          observations: closureObservations,
         });
+      }
 
-      if (closureError) throw closureError;
-
-      const sentToBIM = await sendPDFToBIM(selectedOrder.id, pdfPath);
-
-      alert(
-        `Orden de trabajo cerrada correctamente.\n\nPDF generado: ${pdfPath}\n` +
-        (sentToBIM ? 'PDF enviado automáticamente al módulo BIM.' : 'Este equipo no tiene modelo BIM asociado.')
-      );
+      alert('Orden de trabajo completada correctamente.');
 
       setClosureObservations('');
       await loadWorkOrders();
@@ -372,7 +381,6 @@ export default function Maintenance() {
           scheduled_year: selectedYear,
           status: 'pending',
           priority: 'medium',
-          is_closed: false,
           created_by: user?.id
         }])
         .select()
@@ -403,29 +411,6 @@ export default function Maintenance() {
     }
   };
 
-  const downloadPDF = async (workOrderId: string) => {
-    try {
-      setProcessingPDF(true);
-
-      const { data: closure } = await supabase
-        .from('maintenance_work_order_closure')
-        .select('pdf_file_path')
-        .eq('work_order_id', workOrderId)
-        .maybeSingle();
-
-      if (closure?.pdf_file_path) {
-        alert(`Descargando PDF desde: ${closure.pdf_file_path}`);
-      } else {
-        const pdfPath = await generateMaintenancePDF(workOrderId);
-        alert(`PDF generado y disponible en: ${pdfPath}`);
-      }
-    } catch (error) {
-      console.error('Error downloading PDF:', error);
-      alert('Error al descargar el PDF');
-    } finally {
-      setProcessingPDF(false);
-    }
-  };
 
   if (loading) {
     return (
@@ -620,7 +605,7 @@ export default function Maintenance() {
                                     {monthOrders.map((order) => (
                                       <button
                                         key={order.id}
-                                        onClick={() => setSelectedOrder(order)}
+                                        onClick={() => selectOrder(order)}
                                         className={`w-full px-2 py-1 rounded text-xs font-medium text-white ${getStatusColor(
                                           order.status
                                         )} hover:opacity-80 transition-opacity`}
@@ -828,40 +813,29 @@ export default function Maintenance() {
               </div>
             )}
 
-            {selectedOrder.status === 'completed' && selectedOrder.is_closed && (
-              <div className="mb-6 p-4 bg-green-50 border-l-4 border-green-500 rounded">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-start gap-3">
-                    <Lock className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-medium text-green-900">Parte Cerrado</p>
-                      <p className="text-sm text-green-700 mt-1">
-                        Esta orden de trabajo ha sido completada y cerrada el {selectedOrder.closed_at ? new Date(selectedOrder.closed_at).toLocaleString('es-ES') : 'fecha desconocida'}.
-                      </p>
-                      <p className="text-sm text-green-700 mt-1">
-                        Los datos no pueden ser modificados.
-                      </p>
-                    </div>
+            {selectedOrder.status === 'completed' && (
+              <div className="mb-6">
+                {loadingReport ? (
+                  <div className="flex items-center gap-2 text-sm text-slate-500 py-4">
+                    <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                    Cargando informe de mantenimiento...
                   </div>
-                  <div className="flex gap-2">
-                    <button
-                      disabled={processingPDF}
-                      className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                      onClick={() => downloadPDF(selectedOrder.id)}
-                    >
-                      <Download className="w-4 h-4" />
-                      {processingPDF ? 'Generando...' : 'Descargar PDF'}
-                    </button>
+                ) : selectedReport ? (
+                  <ReportPanel report={selectedReport} orderId={selectedOrder.id} orderCode={selectedOrder.code} />
+                ) : (
+                  <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg flex items-center gap-3 text-sm text-slate-500">
+                    <FileText className="w-4 h-4" />
+                    No hay informe registrado para esta orden de trabajo.
                   </div>
-                </div>
+                )}
               </div>
             )}
 
-            {(selectedOrder.status === 'in_progress' || (selectedOrder.status === 'completed' && !selectedOrder.is_closed)) && !editingOrder && (
+            {selectedOrder.status === 'in_progress' && !editingOrder && (
               <div className="mb-6">
                 <MaintenanceOperationsManager
                   workOrderId={selectedOrder.id}
-                  isClosed={selectedOrder.is_closed || false}
+                  isClosed={false}
                   onOperationsChange={() => loadWorkOrders()}
                 />
 
@@ -874,32 +848,6 @@ export default function Maintenance() {
                     rows={3}
                     placeholder="Añada observaciones finales sobre el trabajo realizado..."
                   />
-                </div>
-
-                <div className="mt-4 flex gap-3 flex-wrap">
-                  {selectedOrder.status === 'completed' && !selectedOrder.is_closed && (
-                    <button
-                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
-                      onClick={() => startEditingOrder(selectedOrder)}
-                    >
-                      <Edit className="w-4 h-4" />
-                      Modificar Datos Generales
-                    </button>
-                  )}
-                  <button
-                    disabled={processingPDF}
-                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                    onClick={closeWorkOrder}
-                  >
-                    <Lock className="w-4 h-4" />
-                    {processingPDF ? 'Cerrando...' : 'Cerrar y Generar PDF'}
-                  </button>
-                  {selectedOrder.equipment_id && (
-                    <div className="flex items-center gap-2 text-sm text-gray-600 bg-yellow-50 px-3 py-2 rounded-lg border border-yellow-200">
-                      <Send className="w-4 h-4 text-yellow-600" />
-                      <span>Se enviará automáticamente al módulo BIM si el equipo tiene modelo asociado</span>
-                    </div>
-                  )}
                 </div>
               </div>
             )}
@@ -949,15 +897,6 @@ export default function Maintenance() {
               </div>
             )}
 
-            {selectedOrder.is_closed && (
-              <div className="mb-6">
-                <MaintenanceOperationsManager
-                  workOrderId={selectedOrder.id}
-                  isClosed={true}
-                  onOperationsChange={() => loadWorkOrders()}
-                />
-              </div>
-            )}
 
             <div className="mt-4 flex justify-end gap-3">
               <button
@@ -1080,6 +1019,138 @@ export default function Maintenance() {
               </div>
             </div>
           </Card>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Report Panel ────────────────────────────────────────────────────────────
+
+const MONTHS_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+function ReportPanel({ report, orderId, orderCode }: { report: MaintenanceReport; orderId: string; orderCode: string }) {
+  const [expanded, setExpanded] = useState(true);
+
+  const handleDownloadPDF = () => {
+    const date = new Date(report.performed_at).toLocaleDateString('es-ES');
+    const lines: string[] = [
+      `PARTE DE MANTENIMIENTO — ${orderCode}`,
+      `Fecha de ejecución: ${date}`,
+      `Duración: ${report.duration_minutes} min`,
+      '',
+      'OBSERVACIONES',
+      report.observations || '—',
+      '',
+    ];
+    if (report.issues_found) {
+      lines.push('INCIDENCIAS DETECTADAS', report.issues_found, '');
+    }
+    if (report.corrective_actions) {
+      lines.push('ACCIONES CORRECTIVAS', report.corrective_actions, '');
+    }
+    if (report.materials_used && report.materials_used.length > 0) {
+      lines.push('MATERIALES UTILIZADOS');
+      report.materials_used.forEach((m: any) => {
+        lines.push(`  • ${m.material}: ${m.quantity}`);
+      });
+      lines.push('');
+    }
+    if (report.next_actions_required) {
+      lines.push('PRÓXIMAS ACCIONES REQUERIDAS', report.next_actions_required);
+    }
+
+    const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Parte_${orderCode}_${date.replace(/\//g, '-')}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const performedDate = new Date(report.performed_at);
+  const materials: any[] = Array.isArray(report.materials_used) ? report.materials_used : [];
+
+  return (
+    <div className="border border-emerald-200 rounded-xl overflow-hidden">
+      <div className="flex items-center justify-between px-5 py-3 bg-emerald-50 border-b border-emerald-200">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center">
+            <FileText className="w-4 h-4 text-emerald-600" />
+          </div>
+          <div>
+            <p className="font-semibold text-emerald-900 text-sm">Informe de mantenimiento</p>
+            <p className="text-xs text-emerald-600">
+              Ejecutado el {performedDate.toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' })}
+              {report.duration_minutes > 0 && ` · ${report.duration_minutes} min`}
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleDownloadPDF}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-lg transition-colors"
+          >
+            <Download className="w-3.5 h-3.5" />
+            Descargar PDF
+          </button>
+          <button
+            onClick={() => setExpanded(v => !v)}
+            className="p-1.5 rounded-lg hover:bg-emerald-100 text-emerald-500 transition-colors"
+          >
+            {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          </button>
+        </div>
+      </div>
+
+      {expanded && (
+        <div className="p-5 space-y-4 bg-white">
+          {report.observations && (
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wide text-slate-500 mb-1.5">Observaciones</p>
+              <p className="text-sm text-slate-700 leading-relaxed bg-slate-50 rounded-lg p-3 border border-slate-100">{report.observations}</p>
+            </div>
+          )}
+
+          {report.issues_found && (
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wide text-amber-600 mb-1.5">Incidencias detectadas</p>
+              <p className="text-sm text-slate-700 leading-relaxed bg-amber-50 rounded-lg p-3 border border-amber-100">{report.issues_found}</p>
+            </div>
+          )}
+
+          {report.corrective_actions && (
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wide text-blue-600 mb-1.5">Acciones correctivas realizadas</p>
+              <p className="text-sm text-slate-700 leading-relaxed bg-blue-50 rounded-lg p-3 border border-blue-100">{report.corrective_actions}</p>
+            </div>
+          )}
+
+          {materials.length > 0 && (
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wide text-slate-500 mb-1.5 flex items-center gap-1.5">
+                <Package className="w-3.5 h-3.5" />
+                Materiales utilizados
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {materials.map((m: any, i: number) => (
+                  <span key={i} className="inline-flex items-center gap-1 px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-full border border-slate-200">
+                    <span className="font-medium">{m.material}</span>
+                    <span className="text-slate-400">·</span>
+                    <span>{m.quantity}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {report.next_actions_required && (
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wide text-slate-500 mb-1.5">Próximas acciones requeridas</p>
+              <p className="text-sm text-slate-700 leading-relaxed bg-slate-50 rounded-lg p-3 border border-slate-100">{report.next_actions_required}</p>
+            </div>
+          )}
         </div>
       )}
     </div>
