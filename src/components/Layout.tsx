@@ -1,26 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import {
-  Home,
-  Activity,
-  AlertTriangle,
-  Settings,
-  Menu,
-  X,
-  Map,
-  BarChart3,
-  LogOut,
-  Package,
-  Wrench,
-  FolderOpen,
-  TrendingUp,
-  Box,
-  ExternalLink,
-  ChevronRight,
-  Info,
-  Shield,
-  Layout as LayoutIcon,
-} from 'lucide-react';
+import { Home, Activity, AlertTriangle, Settings, Menu, X, Map, BarChart3, LogOut, Package, Wrench, FolderOpen, TrendingUp, Box, ExternalLink, ChevronRight, Info, Shield, LayoutGrid as LayoutIcon, Play } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useDamSelection } from '../contexts/DamSelectionContext';
 import { SipresasLogo } from './logos/SipresasLogo';
@@ -137,6 +117,13 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             >
               <Menu size={18} />
               <span>Menú</span>
+            </button>
+
+            <button
+              onClick={() => navigate('/demo')}
+              className="flex items-center gap-2 px-3 py-1.5 bg-white text-[#0066A1] hover:bg-blue-50 rounded transition-colors text-sm font-bold shadow-sm"
+            >
+              <Play size={14} /> Demo
             </button>
 
             {/* Enlaces rápidos estilo SAIH */}

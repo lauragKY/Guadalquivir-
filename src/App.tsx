@@ -17,6 +17,7 @@ import Map from './pages/Map';
 import Settings from './pages/Settings';
 import ColorPalette from './pages/ColorPalette';
 import SetupDemoUsers from './pages/SetupDemoUsers';
+import Demo from './pages/Demo';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/setup-demo" element={<SetupDemoUsers />} />
+            <Route path="/demo" element={<Demo />} />
             <Route path="/login" element={<Login />} />
             <Route
               path="/*"
