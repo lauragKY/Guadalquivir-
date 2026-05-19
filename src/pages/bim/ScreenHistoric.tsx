@@ -7,18 +7,18 @@ import type { Screen } from './types';
 interface Props { onNavigate: (s: Screen) => void; }
 
 const EVENT_CFG: Record<string, { label: string; color: string }> = {
-  status_changed:        { label: 'Cambio de estado',      color: 'bg-amber-100 text-amber-700 border-amber-200' },
-  alert_generated:       { label: 'Alerta generada',       color: 'bg-red-100 text-red-700 border-red-200' },
-  model_updated:         { label: 'Modelo actualizado',    color: 'bg-blue-100 text-blue-700 border-blue-200' },
-  model_published:       { label: 'Modelo publicado',      color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
-  threshold_exceeded:    { label: 'Umbral superado',       color: 'bg-orange-100 text-orange-700 border-orange-200' },
-  maintenance_completed: { label: 'Mantenimiento realizado', color: 'bg-teal-100 text-teal-700 border-teal-200' },
-  document_accessed:     { label: 'Documento consultado',  color: 'bg-slate-100 text-slate-600 border-slate-200' },
+  status_changed:        { label: 'Cambio de estado',       color: 'bg-amber-100 text-amber-700 border-amber-200' },
+  alert_generated:       { label: 'Alerta generada',        color: 'bg-red-100 text-red-700 border-red-200' },
+  model_updated:         { label: 'Modelo actualizado',     color: 'bg-blue-100 text-blue-700 border-blue-200' },
+  model_published:       { label: 'Modelo publicado',       color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
+  threshold_exceeded:    { label: 'Umbral superado',        color: 'bg-orange-100 text-orange-700 border-orange-200' },
+  maintenance_completed: { label: 'Mantenimiento',          color: 'bg-teal-100 text-teal-700 border-teal-200' },
+  document_accessed:     { label: 'Documento consultado',   color: 'bg-slate-100 text-slate-600 border-slate-200' },
 };
 
 export default function ScreenHistoric({ onNavigate }: Props) {
   const [search, setSearch] = useState('');
-  const [typeFilter, setTypeFilter] = useState<string>('all');
+  const [typeFilter, setTypeFilter] = useState('all');
 
   const filtered = BIM_HISTORIC.filter(e => {
     const matchSearch = !search || [e.user, e.element_name, e.description, e.module].some(f => f?.toLowerCase().includes(search.toLowerCase()));
@@ -34,9 +34,7 @@ export default function ScreenHistoric({ onNavigate }: Props) {
     const blob = new Blob([lines.join('\n')], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = `historico_bim_${CURRENT_DATE.replace(/\//g, '-')}.csv`;
-    a.click();
+    a.href = url; a.download = `historico_bim_${CURRENT_DATE.replace(/\//g, '-')}.csv`; a.click();
     URL.revokeObjectURL(url);
   };
 
@@ -49,7 +47,6 @@ export default function ScreenHistoric({ onNavigate }: Props) {
         </button>
       </div>
 
-      {/* Filters */}
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4 space-y-3">
         <div className="relative">
           <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -64,43 +61,29 @@ export default function ScreenHistoric({ onNavigate }: Props) {
         <p className="text-xs text-slate-400">{filtered.length} evento(s)</p>
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-        <table className="min-w-full text-sm">
-          <thead className="bg-slate-50 border-b border-slate-200">
-            <tr>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">Fecha/Hora</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">Tipo</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">Usuario · Rol</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">Elemento</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">Módulo</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500">Descripción</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-100">
-            {filtered.map(e => {
-              const cfg = EVENT_CFG[e.event_type];
-              return (
-                <tr key={e.id} className="hover:bg-slate-50 transition-colors">
-                  <td className="px-4 py-3 text-xs font-mono text-slate-600 whitespace-nowrap">{e.date} {e.time}</td>
-                  <td className="px-4 py-3">
-                    <span className={`text-xs px-2 py-0.5 rounded border font-semibold ${cfg?.color ?? 'bg-slate-100 text-slate-600 border-slate-200'}`}>{cfg?.label ?? e.event_type}</span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <p className="text-xs font-bold text-slate-800">{e.user}</p>
-                    <p className="text-xs text-slate-400">{ROLE_LABEL[e.role]}</p>
-                  </td>
-                  <td className="px-4 py-3 text-xs text-slate-700">{e.element_name ?? '—'}</td>
-                  <td className="px-4 py-3 text-xs text-slate-500">{e.module}</td>
-                  <td className="px-4 py-3 text-xs text-slate-700 max-w-xs truncate">{e.description}</td>
-                </tr>
-              );
-            })}
-            {filtered.length === 0 && (
-              <tr><td colSpan={6} className="px-4 py-10 text-center text-slate-400 text-sm">No hay eventos con los filtros seleccionados.</td></tr>
-            )}
-          </tbody>
-        </table>
+      {/* Timeline view */}
+      <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
+        <div className="space-y-4">
+          {filtered.map((e, i) => {
+            const cfg = EVENT_CFG[e.event_type];
+            return (
+              <div key={e.id} className="relative pl-6">
+                <div className="absolute left-0 top-1.5 w-2.5 h-2.5 rounded-full bg-blue-400" />
+                {i < filtered.length - 1 && <div className="absolute left-1 top-4 w-px h-full bg-slate-200" />}
+                <div className="flex flex-wrap items-start gap-2 mb-1">
+                  <span className={`text-xs px-2 py-0.5 rounded border font-semibold ${cfg?.color ?? 'bg-slate-100 text-slate-600 border-slate-200'}`}>{cfg?.label ?? e.event_type}</span>
+                  {e.element_name && <span className="text-xs font-bold text-slate-700">{e.element_name}</span>}
+                  <span className="text-xs text-slate-400">{e.module}</span>
+                </div>
+                <p className="text-sm text-slate-800 mb-0.5">{e.description}</p>
+                <p className="text-xs text-slate-400">{e.date} {e.time} · {e.user} · {ROLE_LABEL[e.role]}</p>
+              </div>
+            );
+          })}
+          {filtered.length === 0 && (
+            <p className="text-center text-slate-400 text-sm py-8">No hay eventos con los filtros seleccionados.</p>
+          )}
+        </div>
       </div>
     </div>
   );
