@@ -490,6 +490,3 @@ export default function ScreenSimulacro() {
     </div>
   );
 }
-
-
-export default ScreenSimulacro
