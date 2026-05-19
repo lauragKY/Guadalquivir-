@@ -56,7 +56,7 @@ export default function TechnicalArchive() {
         {/* Header */}
         <div className="px-5 py-5 border-b border-slate-100 bg-slate-50">
           <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">Archivo Técnico</p>
-          <p className="text-sm font-bold text-slate-900 leading-tight">Presa de Guadalmena</p>
+          <p className="text-sm font-bold text-slate-900 leading-tight">Presa de Bembézar</p>
           <div className="mt-2 flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span className="text-xs text-slate-500">Alfresco ECM conectado</span>

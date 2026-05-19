@@ -76,7 +76,7 @@ export default function Auscultation() {
             <Activity size={16} className="text-blue-600" />
             <p className="text-sm font-bold text-slate-900">Auscultación</p>
           </div>
-          <p className="text-xs text-slate-500">Presa de Guadalmena</p>
+          <p className="text-xs text-slate-500">Presa de Bembézar</p>
           {hasExtraordinary && (
             <div className="mt-2 flex items-center gap-1.5 text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-2 py-1">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse flex-shrink-0" />

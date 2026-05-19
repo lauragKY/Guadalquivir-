@@ -5,6 +5,7 @@ import { Badge } from '../components/ui/Badge';
 import { MaintenanceWorkOrder, MaintenanceReport } from '../types';
 import { getMaintenanceWorkOrders, getDams, getMaintenanceReport } from '../services/api';
 import { supabase } from '../lib/supabase';
+import { useDamSelection } from '../contexts/DamSelectionContext';
 import MaintenanceOperationsManager from '../components/MaintenanceOperationsManager';
 
 const MONTHS = [
@@ -30,9 +31,10 @@ const PERSONNEL_TYPES = [
 ];
 
 export default function Maintenance() {
+  const { selectedDam: contextDam } = useDamSelection();
   const [workOrders, setWorkOrders] = useState<MaintenanceWorkOrder[]>([]);
   const [filteredOrders, setFilteredOrders] = useState<MaintenanceWorkOrder[]>([]);
-  const [selectedDamId, setSelectedDamId] = useState<string>('');
+  const [selectedDamId, setSelectedDamId] = useState<string>(contextDam?.id ?? '');
   const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());
   const [dams, setDams] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -94,7 +96,8 @@ export default function Maintenance() {
       const damsData = await getDams();
       setDams(damsData);
       if (damsData.length > 0 && !selectedDamId) {
-        setSelectedDamId(damsData[0].id);
+        const demoDam = damsData.find(d => d.id === contextDam?.id);
+        setSelectedDamId(demoDam ? demoDam.id : damsData[0].id);
       }
     } catch (error) {
       console.error('Error loading dams:', error);

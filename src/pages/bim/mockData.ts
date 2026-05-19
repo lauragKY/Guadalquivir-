@@ -4,8 +4,8 @@ import type {
 } from './types';
 
 export const CURRENT_DATE = '19/05/2026';
-export const DAM_NAME = 'Presa de Guadalmena';
-export const DAM_CODE = 'GQ-012';
+export const DAM_NAME = 'Presa de Bembézar';
+export const DAM_CODE = 'GQ-009';
 export const DAM_STATUS: DamGlobalStatus = 'extraordinary';
 
 // ─── BIM Elements ─────────────────────────────────────────────────────────────
@@ -27,9 +27,9 @@ export const BIM_ELEMENTS: BimElement[] = [
     maint_next_date: '10/11/2026', maint_open_incidents: 0, maint_total_parts: 18,
     expl_status: 'S. Extraordinaria activa · Avenida en curso',
     archive_docs: [
-      { id: 'd1', name: 'Plano sección transversal', type: 'PDF', size: '4.2 MB', date: '2018', critical: false, path: 'Archivo Técnico > BIM > Guadalmena > Planos' },
-      { id: 'd2', name: 'Memoria constructiva presa', type: 'PDF', size: '18 MB', date: '1995', critical: true, path: 'Archivo Técnico > BIM > Guadalmena > Documentos' },
-      { id: 'd3', name: 'Guadalmena_BIM_IFC_v1.ifc', type: 'IFC', size: '1.24 GB', date: '20/03/2026', critical: true, path: 'Archivo Técnico > BIM > Guadalmena > Modelos originales' },
+      { id: 'd1', name: 'Plano sección transversal', type: 'PDF', size: '4.2 MB', date: '2018', critical: false, path: 'Archivo Técnico > BIM > Bembézar > Planos' },
+      { id: 'd2', name: 'Memoria constructiva presa', type: 'PDF', size: '18 MB', date: '1995', critical: true, path: 'Archivo Técnico > BIM > Bembézar > Documentos' },
+      { id: 'd3', name: 'Bembezar_BIM_IFC_v1.ifc', type: 'IFC', size: '1.24 GB', date: '20/03/2026', critical: true, path: 'Archivo Técnico > BIM > Bembézar > Modelos originales' },
     ],
     historic: [
       { id: 'h1', date: '10/05/2026', time: '11:15', user: 'Carmen Rodríguez', role: 'maintenance_tech', module: 'Mantenimiento', action: 'Inspección semestral', result: 'Sin anomalías detectadas. Parte cerrado.' },
@@ -50,7 +50,7 @@ export const BIM_ELEMENTS: BimElement[] = [
     maint_status: 'Al día', maint_last_date: '20/01/2026', maint_next_date: '20/07/2026',
     maint_open_incidents: 0, maint_total_parts: 8,
     archive_docs: [
-      { id: 'd1', name: 'Plano coronación', type: 'DWG', size: '1.1 MB', date: '2018', critical: false, path: 'Archivo Técnico > BIM > Guadalmena > Planos' },
+      { id: 'd1', name: 'Plano coronación', type: 'DWG', size: '1.1 MB', date: '2018', critical: false, path: 'Archivo Técnico > BIM > Bembézar > Planos' },
     ],
     historic: [
       { id: 'h1', date: '20/01/2026', time: '09:00', user: 'Miguel Torres', role: 'maintenance_tech', module: 'Mantenimiento', action: 'Revisión vía de servicio', result: 'Correcto. Sin fisuras.' },
@@ -71,7 +71,7 @@ export const BIM_ELEMENTS: BimElement[] = [
     maint_next_date: '05/11/2026', maint_open_incidents: 0, maint_total_parts: 24,
     expl_status: 'Operativa · Abierta al 40% · Q=90 m³/s',
     archive_docs: [
-      { id: 'd1', name: 'Manual compuerta Taintor TN-1200', type: 'PDF', size: '8.4 MB', date: '2003', critical: false, path: 'Archivo Técnico > BIM > Guadalmena > Manuales' },
+      { id: 'd1', name: 'Manual compuerta Taintor TN-1200', type: 'PDF', size: '8.4 MB', date: '2003', critical: false, path: 'Archivo Técnico > BIM > Bembézar > Manuales' },
       { id: 'd2', name: 'Parte_OT-2026-012_Compuerta_1.pdf', type: 'PDF', size: '1.1 MB', date: '05/05/2026', critical: false, path: 'Archivo Técnico > Mantenimiento > Partes' },
     ],
     historic: [
@@ -96,7 +96,7 @@ export const BIM_ELEMENTS: BimElement[] = [
     expl_status: 'Cerrada · Revisión pendiente',
     archive_docs: [
       { id: 'd1', name: 'Parte_OT-2026-014_Compuerta_2.pdf', type: 'PDF', size: '1.2 MB', date: '10/02/2026', critical: false, path: 'Archivo Técnico > Mantenimiento > Partes' },
-      { id: 'd2', name: 'Manual compuerta Taintor TN-1200', type: 'PDF', size: '8.4 MB', date: '2003', critical: false, path: 'Archivo Técnico > BIM > Guadalmena > Manuales' },
+      { id: 'd2', name: 'Manual compuerta Taintor TN-1200', type: 'PDF', size: '8.4 MB', date: '2003', critical: false, path: 'Archivo Técnico > BIM > Bembézar > Manuales' },
     ],
     historic: [
       { id: 'h1', date: '10/02/2026', time: '15:30', user: 'Miguel Torres', role: 'maintenance_tech', module: 'Mantenimiento', action: 'Revisión parcial', result: 'Parte OT-2026-014. Revisión pendiente por acceso limitado.' },
@@ -119,8 +119,8 @@ export const BIM_ELEMENTS: BimElement[] = [
     maint_next_date: '10/05/2026', maint_open_incidents: 1, maint_total_parts: 15,
     expl_status: 'Cerrado · Acceso condicionado',
     archive_docs: [
-      { id: 'd1', name: 'Plano_Galeria_Desague.pdf', type: 'PDF', size: '3.8 MB', date: '2018', critical: false, path: 'Archivo Técnico > BIM > Guadalmena > Planos' },
-      { id: 'd2', name: 'Manual válvula DN-1200', type: 'PDF', size: '6.2 MB', date: '1999', critical: false, path: 'Archivo Técnico > BIM > Guadalmena > Manuales' },
+      { id: 'd1', name: 'Plano_Galeria_Desague.pdf', type: 'PDF', size: '3.8 MB', date: '2018', critical: false, path: 'Archivo Técnico > BIM > Bembézar > Planos' },
+      { id: 'd2', name: 'Manual válvula DN-1200', type: 'PDF', size: '6.2 MB', date: '1999', critical: false, path: 'Archivo Técnico > BIM > Bembézar > Manuales' },
     ],
     historic: [
       { id: 'h1', date: '10/02/2026', time: '10:00', user: 'Miguel Torres', role: 'maintenance_tech', module: 'Mantenimiento', action: 'Revisión semestral', result: 'Completada parcialmente. Revisión OT-2026-018 pendiente.' },
@@ -141,7 +141,7 @@ export const BIM_ELEMENTS: BimElement[] = [
     maint_last_pdf: '#', maint_last_pdf_name: 'Averia_GE_principal_18may26.pdf',
     maint_next_date: '20/05/2026', maint_open_incidents: 1, maint_total_parts: 32,
     archive_docs: [
-      { id: 'd1', name: 'Manual_Grupo_Electrogeno.pdf', type: 'PDF', size: '14.5 MB', date: '2015', critical: false, path: 'Archivo Técnico > BIM > Guadalmena > Manuales' },
+      { id: 'd1', name: 'Manual_Grupo_Electrogeno.pdf', type: 'PDF', size: '14.5 MB', date: '2015', critical: false, path: 'Archivo Técnico > BIM > Bembézar > Manuales' },
       { id: 'd2', name: 'Averia_GE_principal_18may26.pdf', type: 'PDF', size: '0.8 MB', date: '18/05/2026', critical: true, path: 'Archivo Técnico > Mantenimiento > Partes urgentes' },
     ],
     historic: [
@@ -184,7 +184,7 @@ export const BIM_ELEMENTS: BimElement[] = [
     maint_status: 'Al día', maint_last_date: '15/04/2026', maint_next_date: '15/10/2026',
     maint_open_incidents: 0, maint_total_parts: 16,
     archive_docs: [
-      { id: 'd1', name: 'Manual CT-630 ABB', type: 'PDF', size: '9.2 MB', date: '2008', critical: false, path: 'Archivo Técnico > BIM > Guadalmena > Manuales' },
+      { id: 'd1', name: 'Manual CT-630 ABB', type: 'PDF', size: '9.2 MB', date: '2008', critical: false, path: 'Archivo Técnico > BIM > Bembézar > Manuales' },
     ],
     historic: [
       { id: 'h1', date: '15/04/2026', time: '10:30', user: 'Miguel Torres', role: 'maintenance_tech', module: 'Mantenimiento', action: 'Revisión anual', result: 'Correcto. Sin incidencias.' },
@@ -204,7 +204,7 @@ export const BIM_ELEMENTS: BimElement[] = [
     maint_status: 'Al día', maint_last_date: '15/01/2026', maint_next_date: '15/07/2026',
     maint_open_incidents: 0, maint_total_parts: 12,
     archive_docs: [
-      { id: 'd1', name: 'Plano_Galeria_Desague.pdf', type: 'PDF', size: '3.8 MB', date: '2018', critical: false, path: 'Archivo Técnico > BIM > Guadalmena > Planos' },
+      { id: 'd1', name: 'Plano_Galeria_Desague.pdf', type: 'PDF', size: '3.8 MB', date: '2018', critical: false, path: 'Archivo Técnico > BIM > Bembézar > Planos' },
     ],
     historic: [
       { id: 'h1', date: '15/01/2026', time: '11:00', user: 'Carmen Rodríguez', role: 'maintenance_tech', module: 'Mantenimiento', action: 'Limpieza sumideros', result: 'Completada. Sin obstrucciones.' },
@@ -269,7 +269,7 @@ export const BIM_ELEMENTS: BimElement[] = [
     maint_status: 'Al día', maint_last_date: '01/04/2026', maint_next_date: '01/10/2026',
     maint_open_incidents: 0, maint_total_parts: 14,
     archive_docs: [
-      { id: 'd1', name: 'Manual bomba SP-46-7N', type: 'PDF', size: '5.3 MB', date: '2012', critical: false, path: 'Archivo Técnico > BIM > Guadalmena > Manuales' },
+      { id: 'd1', name: 'Manual bomba SP-46-7N', type: 'PDF', size: '5.3 MB', date: '2012', critical: false, path: 'Archivo Técnico > BIM > Bembézar > Manuales' },
     ],
     historic: [
       { id: 'h1', date: '01/04/2026', time: '14:00', user: 'Miguel Torres', role: 'maintenance_tech', module: 'Mantenimiento', action: 'Prueba funcionamiento', result: 'Ambas bombas operativas. Correcto.' },
@@ -319,8 +319,8 @@ export const BIM_ELEMENTS: BimElement[] = [
 
 export const BIM_MODELS: BimModel[] = [
   {
-    id: 'M-001', dam: 'Presa de Guadalmena',
-    name: 'Guadalmena_BIM_IFC_v1.ifc',
+    id: 'M-001', dam: 'Presa de Bembézar',
+    name: 'Bembezar_BIM_IFC_v1.ifc',
     description: 'Modelo BIM completo generado por escáner 3D. 14.832 elementos. Almacenado en Archivo Técnico.',
     format_original: 'IFC', format_optimized: 'glTF',
     state: 'published', version: '1.0', version_date: '12/03/2026',
@@ -328,12 +328,12 @@ export const BIM_MODELS: BimModel[] = [
     elements_count: 14832, author: 'Carlos Fernández Ruiz',
     published_by: 'Ana García López', published_date: '20/03/2026',
     saih_sync: true, last_sync: '19/05/2026 07:30',
-    changes_summary: 'Primera versión publicada del modelo completo Guadalmena.',
-    archive_path: 'Archivo Técnico > BIM > Guadalmena > Modelos originales',
+    changes_summary: 'Primera versión publicada del modelo completo Bembézar.',
+    archive_path: 'Archivo Técnico > BIM > Bembézar > Modelos originales',
   },
   {
-    id: 'M-002', dam: 'Presa de Guadalmena',
-    name: 'Guadalmena_Modelo_Optimizado_v1.gltf',
+    id: 'M-002', dam: 'Presa de Bembézar',
+    name: 'Bembezar_Modelo_Optimizado_v1.gltf',
     description: 'Versión optimizada para visor web. Nivel de detalle operativo. 4.200 elementos. Cargado en visor.',
     format_original: 'glTF',
     state: 'published', version: '1.0', version_date: '14/03/2026',
@@ -342,11 +342,11 @@ export const BIM_MODELS: BimModel[] = [
     published_by: 'Ana García López', published_date: '21/03/2026',
     saih_sync: true, last_sync: '19/05/2026 07:30',
     changes_summary: 'Generado a partir de IFC v1.0. Reducción detalle nivel 3. Elementos críticos completos.',
-    archive_path: 'Archivo Técnico > BIM > Guadalmena > Modelos optimizados',
+    archive_path: 'Archivo Técnico > BIM > Bembézar > Modelos optimizados',
   },
   {
-    id: 'M-003', dam: 'Presa de Guadalmena',
-    name: 'Guadalmena_Instrumentacion_v1.4-rc.ifc',
+    id: 'M-003', dam: 'Presa de Bembézar',
+    name: 'Bembezar_Instrumentacion_v1.4-rc.ifc',
     description: 'Modelo detallado de instrumentación y auscultación. En revisión antes de publicar.',
     format_original: 'IFC',
     state: 'optimized', version: '1.4-rc', version_date: '07/05/2026',
@@ -354,11 +354,11 @@ export const BIM_MODELS: BimModel[] = [
     elements_count: 892, author: 'Miguel Torres Pérez',
     saih_sync: true, last_sync: '19/05/2026 07:30',
     changes_summary: 'Nuevo piezómetro P-18 incorporado. Actualización coordenadas P-14.',
-    archive_path: 'Archivo Técnico > BIM > Guadalmena > Modelos originales',
+    archive_path: 'Archivo Técnico > BIM > Bembézar > Modelos originales',
   },
   {
-    id: 'M-004', dam: 'Presa de Guadalmena',
-    name: 'Guadalmena_AsBuilt_2018.dwg',
+    id: 'M-004', dam: 'Presa de Bembézar',
+    name: 'Bembezar_AsBuilt_2018.dwg',
     description: 'Digitalización de planos as-built originales de construcción. Modelo de referencia histórico.',
     format_original: 'DWG',
     state: 'obsolete', version: '1.0', version_date: '15/06/2018',
@@ -366,7 +366,7 @@ export const BIM_MODELS: BimModel[] = [
     elements_count: 1200, author: 'Archivo Técnico CHG',
     saih_sync: false,
     changes_summary: 'Digitalización inicial. Sustituido por modelo IFC v1.0.',
-    archive_path: 'Archivo Técnico > BIM > Guadalmena > Versiones',
+    archive_path: 'Archivo Técnico > BIM > Bembézar > Versiones',
   },
 ];
 
@@ -562,8 +562,8 @@ export const BIM_AUDIT: BimAuditEntry[] = [
   { id: 'AU-004', date: '18/05/2026', time: '10:00', action: 'Descarga documento crítico', user: 'Laura Sánchez', role: 'viewer', resource: 'Memoria constructiva presa (EST-CUE-001)', result: 'DENEGADO: rol insuficiente', detail: 'Documento marcado como crítico. Rol "viewer" sin permiso.', ip: '10.0.14.88', reason: 'Intento de descarga no autorizado', hash: 'sha256:d4e5f6789012345678901234efgh33dd' },
   { id: 'AU-005', date: '17/05/2026', time: '14:32', action: 'Alerta BIM generada', user: 'Sistema DAMDATA', role: 'sipresas_admin', resource: 'BA-004 · E-010 Piezómetro P-14', result: 'Alerta generada y notificada', detail: 'Umbral S.E. 2.18 kg/cm² > 2.00. Módulo Auscultación.', ip: '10.0.0.2', hash: 'sha256:e5f67890123456789012345678901234' },
   { id: 'AU-006', date: '16/05/2026', time: '23:14', action: 'Cambio estado elemento', user: 'Sistema DAMDATA', role: 'sipresas_admin', resource: 'E-011 → threshold_exceeded', result: 'Estado actualizado', detail: 'Filtración 212.7 l/s > 169.1. Sincronización módulo Auscultación.', ip: '10.0.0.2', hash: 'sha256:f678901234567890123456789012345a' },
-  { id: 'AU-007', date: '12/05/2026', time: '09:18', action: 'Publicación modelo BIM', user: 'Ana García López', role: 'bim_admin', resource: 'M-002 · Guadalmena_Modelo_Optimizado_v1.gltf', result: 'Publicado en visor BIM', detail: 'Modelo optimizado 88 MB. 4.200 elementos. Firmado digitalmente.', ip: '10.0.12.34', reason: 'Publicación versión inicial visor', hash: 'sha256:789012345678901234567890abcdef12' },
+  { id: 'AU-007', date: '12/05/2026', time: '09:18', action: 'Publicación modelo BIM', user: 'Ana García López', role: 'bim_admin', resource: 'M-002 · Bembezar_Modelo_Optimizado_v1.gltf', result: 'Publicado en visor BIM', detail: 'Modelo optimizado 88 MB. 4.200 elementos. Firmado digitalmente.', ip: '10.0.12.34', reason: 'Publicación versión inicial visor', hash: 'sha256:789012345678901234567890abcdef12' },
   { id: 'AU-008', date: '10/05/2026', time: '11:20', action: 'Alerta BIM resuelta', user: 'Carmen Rodríguez', role: 'maintenance_tech', resource: 'BA-007 · Cuerpo de Presa', result: 'Alerta marcada como resuelta', detail: 'Inspección semestral completada. Sin anomalías.', ip: '10.0.15.22', reason: 'Cierre parte de mantenimiento', hash: 'sha256:01234567890123456789012345678901' },
   { id: 'AU-009', date: '05/05/2026', time: '14:02', action: 'Descarga documento', user: 'Laura Sánchez', role: 'viewer', resource: 'Manual compuerta Taintor TN-1200', result: 'Descarga permitida', detail: 'Documento no crítico. Rol "viewer" autorizado.', ip: '10.0.14.88', hash: 'sha256:1234567890abcdef12345678901234567' },
-  { id: 'AU-010', date: '20/03/2026', time: '15:05', action: 'Modelo BIM almacenado', user: 'Ana García López', role: 'bim_admin', resource: 'M-001 · Guadalmena_BIM_IFC_v1.ifc', result: 'Almacenado en Archivo Técnico', detail: '1.24 GB · IFC v2.3 · Archivo Técnico > BIM > Guadalmena.', ip: '10.0.12.34', reason: 'Publicación primera versión modelo BIM', hash: 'sha256:abcdef1234567890123456789012345678' },
+  { id: 'AU-010', date: '20/03/2026', time: '15:05', action: 'Modelo BIM almacenado', user: 'Ana García López', role: 'bim_admin', resource: 'M-001 · Bembezar_BIM_IFC_v1.ifc', result: 'Almacenado en Archivo Técnico', detail: '1.24 GB · IFC v2.3 · Archivo Técnico > BIM > Bembézar.', ip: '10.0.12.34', reason: 'Publicación primera versión modelo BIM', hash: 'sha256:abcdef1234567890123456789012345678' },
 ];

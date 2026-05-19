@@ -51,7 +51,7 @@ export default function ScreenTrends({ onNavigate }: Props) {
     <div className="space-y-5">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-slate-900">Gráficos de tendencia y análisis</h2>
-        <p className="text-xs text-slate-500">Últimas 12 lecturas · Presa de Guadalmena</p>
+        <p className="text-xs text-slate-500">Últimas 12 lecturas · Presa de Bembézar</p>
       </div>
 
       {/* Variable selector */}

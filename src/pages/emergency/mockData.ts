@@ -3,10 +3,10 @@ import type {
 } from './types';
 
 export const MOCK_INDICATORS: Indicator[] = [
-  { id: 'i1', name: 'Nivel de embalse', value: '600,95 m', threshold: '600,87 m', evaluation: 'Cuantitativa', status: 'superado',             unit: 'm',      cause: 'hidrologica' },
-  { id: 'i2', name: 'Caudal entrante',  value: '1.420 m³/s', threshold: '1.400 m³/s', evaluation: 'Cuantitativa', status: 'superado',         unit: 'm³/s',   cause: 'hidrologica' },
-  { id: 'i3', name: 'Precipitación 24h', value: '86 mm',   threshold: '75 mm',     evaluation: 'Cuantitativa', status: 'superado',             unit: 'mm',     cause: 'hidrologica' },
-  { id: 'i4', name: 'Piezómetro P-12',  value: '312,4 m',  threshold: '315,0 m',   evaluation: 'Cuantitativa', status: 'normal',              unit: 'm',      cause: 'auscultacion' },
+  { id: 'i1', name: 'Nivel de embalse', value: '383,95 m', threshold: '383,50 m', evaluation: 'Cuantitativa', status: 'superado',             unit: 'm',      cause: 'hidrologica' },
+  { id: 'i2', name: 'Caudal entrante',  value: '480 m³/s', threshold: '450 m³/s', evaluation: 'Cuantitativa', status: 'superado',              unit: 'm³/s',   cause: 'hidrologica' },
+  { id: 'i3', name: 'Precipitación 24h', value: '74 mm',   threshold: '70 mm',    evaluation: 'Cuantitativa', status: 'superado',              unit: 'mm',     cause: 'hidrologica' },
+  { id: 'i4', name: 'Piezómetro P-07',  value: '43,2 m',   threshold: '48,0 m',   evaluation: 'Cuantitativa', status: 'normal',               unit: 'm',      cause: 'auscultacion' },
   { id: 'i5', name: 'Aceleración sísmica', value: '0,008 g', threshold: '0,05 g',  evaluation: 'Cuantitativa', status: 'normal',              unit: 'g',      cause: 'sismo' },
   { id: 'i6', name: 'Inspección visual', value: 'Pendiente', threshold: '—',        evaluation: 'Cualitativa',  status: 'pendiente_validacion', cause: 'inspeccion' },
   { id: 'i7', name: 'Estado sirenas',   value: '8/10 operativas', threshold: '—',   evaluation: 'Cualitativa',  status: 'normal',              cause: 'equipos_aviso' },
@@ -39,9 +39,9 @@ export const MOCK_COMMS: CommunicationRecord[] = [
 ];
 
 export const MOCK_TIMELINE: TimelineEvent[] = [
-  { id: 't1', time: '09:08', event: 'Superado umbral nivel embalse (600,95 m > 600,87 m)',    user: 'Sistema SIPRESAS',          result: 'Propuesta Escenario 0',   type: 'sistema' },
-  { id: 't2', time: '09:09', event: 'Superado umbral caudal entrante (1.420 m³/s)',             user: 'Sistema SIPRESAS',          result: 'Propuesta confirmada',    type: 'sistema' },
-  { id: 't3', time: '09:10', event: 'Superado umbral precipitación 24h (86 mm)',                user: 'Sistema SIPRESAS',          result: 'Confianza: Alta',         type: 'sistema' },
+  { id: 't1', time: '09:08', event: 'Superado umbral nivel embalse (383,95 m > 383,50 m)',    user: 'Sistema SIPRESAS',          result: 'Propuesta Escenario 0',   type: 'sistema' },
+  { id: 't2', time: '09:09', event: 'Superado umbral caudal entrante (480 m³/s)',             user: 'Sistema SIPRESAS',          result: 'Propuesta confirmada',    type: 'sistema' },
+  { id: 't3', time: '09:10', event: 'Superado umbral precipitación 24h (74 mm)',              user: 'Sistema SIPRESAS',          result: 'Confianza: Alta',         type: 'sistema' },
   { id: 't4', time: '09:12', event: 'Propuesta de Escenario 0 revisada',                        user: 'Dir. del Plan — J. García', result: 'Propuesta aceptada',      type: 'decision' },
   { id: 't5', time: '09:17', event: 'Declarado Escenario 0 — Causa: Eventos hidrológicos',      user: 'Dir. del Plan — J. García', result: 'Emergencia activa',       type: 'decision' },
   { id: 't6', time: '09:18', event: 'Actuación PV-1 iniciada (vigilancia nivel embalse)',        user: 'Aux. Auscultación',         result: 'En curso',                type: 'actuacion' },

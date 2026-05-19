@@ -25,7 +25,7 @@ export default function ScreenDashboard({ onNavigate }: Props) {
       <div className="flex items-start justify-between">
         <div>
           <h2 className="text-xl font-bold text-slate-900">Panel principal de Auscultación</h2>
-          <p className="text-sm text-slate-500 mt-0.5">Presa de Guadalmena · {CURRENT_DATE} {CURRENT_TIME}</p>
+          <p className="text-sm text-slate-500 mt-0.5">Presa de Bembézar · {CURRENT_DATE} {CURRENT_TIME}</p>
         </div>
         <div className="flex items-center gap-2">
           <div className={`flex items-center gap-2 px-4 py-2 rounded-xl border ${extraordinary > 0 || scenario0 > 0 ? 'bg-amber-50 border-amber-300' : 'bg-emerald-50 border-emerald-200'}`}>

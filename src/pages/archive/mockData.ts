@@ -19,7 +19,7 @@ export const FOLDERS: Folder[] = [
 export const DOCUMENTS: Document[] = [
   {
     id: 'd1',
-    name: 'Plan de Emergencia Guadalmena.pdf',
+    name: 'Plan de Emergencia Bembézar.pdf',
     type: 'plan_emergencia',
     folderId: 'f1',
     folderPath: 'Planes de Emergencia',
@@ -42,7 +42,7 @@ export const DOCUMENTS: Document[] = [
     ],
     links: [
       { module: 'emergencias', label: 'Escenario 0 — Procedimiento PC-3', ref: 'ESC-0-PC3' },
-      { module: 'gis', label: 'Capa: Zonas inundables Guadalmena', ref: 'GIS-ZI-GDM' },
+      { module: 'gis', label: 'Capa: Zonas inundables Bembézar', ref: 'GIS-ZI-GDM' },
     ],
   },
   {
@@ -71,7 +71,7 @@ export const DOCUMENTS: Document[] = [
     ],
     links: [
       { module: 'emergencias', label: 'Escenario 3 — Zona afección aguas abajo', ref: 'ESC-3-ZAF' },
-      { module: 'gis', label: 'Capa GIS: Modelo inundación Guadalmena', ref: 'GIS-MOD-GDM' },
+      { module: 'gis', label: 'Capa GIS: Modelo inundación Bembézar', ref: 'GIS-MOD-GDM' },
     ],
   },
   {
@@ -117,7 +117,7 @@ export const DOCUMENTS: Document[] = [
     updatedBy: 'Director/a de Explotación',
     createdAt: '18/04/2026',
     createdBy: 'Director/a de Explotación',
-    description: 'Informe de inspección visual anual de la presa de Guadalmena. Incluye inspección de cuerpo de presa, aliviadero, desagüe de fondo y equipos electromecánicos.',
+    description: 'Informe de inspección visual anual de la presa de Bembézar. Incluye inspección de cuerpo de presa, aliviadero, desagüe de fondo y equipos electromecánicos.',
     alfrescoId: 'ALF-GDM-021',
     tags: ['inspección', '2026', 'anual'],
     versions: [
@@ -149,13 +149,13 @@ export const DOCUMENTS: Document[] = [
       { version: '1.0', date: '12/11/2024', user: 'Técnico de Mantenimiento', reason: 'Documento inicial', active: true },
     ],
     links: [
-      { module: 'emergencias', label: 'Equipos de aviso — Sirenas Guadalmena', ref: 'SIREN-GDM' },
+      { module: 'emergencias', label: 'Equipos de aviso — Sirenas Bembézar', ref: 'SIREN-GDM' },
       { module: 'mantenimiento', label: 'Plan mantenimiento sirenas 2025', ref: 'MT-PLAN-2025' },
     ],
   },
   {
     id: 'd6',
-    name: 'Norma de Explotación Guadalmena.pdf',
+    name: 'Norma de Explotación Bembézar.pdf',
     type: 'norma_explotacion',
     folderId: 'f2',
     folderPath: 'Normas de Explotación',
@@ -176,7 +176,7 @@ export const DOCUMENTS: Document[] = [
       { version: '1.0', date: '05/07/2015', user: 'Administrador SIPRESAS', reason: 'Versión inicial', active: false },
     ],
     links: [
-      { module: 'inventario', label: 'Ficha presa: Guadalmena (GQ-016)', ref: 'INV-GQ016' },
+      { module: 'inventario', label: 'Ficha presa: Bembézar (GQ-009)', ref: 'INV-GQ016' },
     ],
   },
   {
@@ -194,7 +194,7 @@ export const DOCUMENTS: Document[] = [
     updatedBy: 'J. García (Dir. Plan)',
     createdAt: '28/02/2025',
     createdBy: 'J. García (Dir. Plan)',
-    description: 'Informe anual de lectura e interpretación de piezómetros de la presa de Guadalmena. Evolución de presiones intersticiales y comparación con umbrales de alerta.',
+    description: 'Informe anual de lectura e interpretación de piezómetros de la presa de Bembézar. Evolución de presiones intersticiales y comparación con umbrales de alerta.',
     alfrescoId: 'ALF-GDM-015',
     tags: ['piezómetros', 'auscultación', '2025'],
     versions: [
@@ -210,16 +210,16 @@ export const DOCUMENTS: Document[] = [
 export const AUDIT_EVENTS: AuditEvent[] = [
   { id: 'a1',  date: '18/04/2026', time: '11:32', user: 'Director/a de Explotación', action: 'subida',             document: 'Informe inspección visual abril 2026.pdf', documentId: 'd4', result: 'ok',       detail: 'Documento subido correctamente a Planes de Emergencia',                       criticality: 'baja' },
   { id: 'a2',  date: '18/04/2026', time: '11:33', user: 'Director/a de Explotación', action: 'vinculado',          document: 'Informe inspección visual abril 2026.pdf', documentId: 'd4', result: 'ok',       detail: 'Vinculado a Campaña auscultación abril 2026' },
-  { id: 'a3',  date: '15/04/2026', time: '09:15', user: 'J. García (Dir. Plan)',      action: 'nueva_version',      document: 'Plan de Emergencia Guadalmena.pdf',        documentId: 'd1', result: 'ok',       detail: 'Nueva versión 3.0 — Actualización escenarios hidrológicos',                   criticality: 'alta' },
-  { id: 'a4',  date: '15/04/2026', time: '09:16', user: 'J. García (Dir. Plan)',      action: 'descarga',           document: 'Plan de Emergencia Guadalmena.pdf',        documentId: 'd1', result: 'ok',       detail: 'Descarga autorizada — perfil Director del Plan',                              criticality: 'alta' },
+  { id: 'a3',  date: '15/04/2026', time: '09:15', user: 'J. García (Dir. Plan)',      action: 'nueva_version',      document: 'Plan de Emergencia Bembézar.pdf',        documentId: 'd1', result: 'ok',       detail: 'Nueva versión 3.0 — Actualización escenarios hidrológicos',                   criticality: 'alta' },
+  { id: 'a4',  date: '15/04/2026', time: '09:16', user: 'J. García (Dir. Plan)',      action: 'descarga',           document: 'Plan de Emergencia Bembézar.pdf',        documentId: 'd1', result: 'ok',       detail: 'Descarga autorizada — perfil Director del Plan',                              criticality: 'alta' },
   { id: 'a5',  date: '02/03/2026', time: '14:20', user: 'Administrador SIPRESAS',     action: 'criticidad_cambiada',document: 'Cartografía zonas inundables.pdf',          documentId: 'd2', result: 'ok',       detail: 'Criticidad cambiada de Alta a Crítica. Motivo: Reclasificación por MITECO',    criticality: 'critica' },
   { id: 'a6',  date: '02/03/2026', time: '14:22', user: 'Administrador SIPRESAS',     action: 'nueva_version',      document: 'Cartografía zonas inundables.pdf',          documentId: 'd2', result: 'ok',       detail: 'Nueva versión 4.1 — Actualización hidráulica post-SNCZI',                     criticality: 'critica' },
   { id: 'a7',  date: '10/03/2026', time: '10:05', user: 'Usuario externo autorizado', action: 'acceso_denegado',    document: 'Cartografía zonas inundables.pdf',          documentId: 'd2', result: 'denegado', detail: 'Acceso denegado — criticidad Crítica. Perfil insuficiente.',                   criticality: 'critica' },
   { id: 'a8',  date: '08/01/2025', time: '16:30', user: 'Técnico de Mantenimiento',   action: 'movido',             document: 'Plano de compuertas.dwg',                  documentId: 'd3', result: 'ok',       detail: 'Movido desde "Planos" a "Planos / Planos hidráulicos". Referencias actualizadas.' },
   { id: 'a9',  date: '08/01/2025', time: '16:35', user: 'Técnico de Mantenimiento',   action: 'nueva_version',      document: 'Plano de compuertas.dwg',                  documentId: 'd3', result: 'ok',       detail: 'Nueva versión 2.0 — Actualización tras sustitución compuerta nº 2',            criticality: 'media' },
   { id: 'a10', date: '12/11/2024', time: '09:00', user: 'Técnico de Mantenimiento',   action: 'subida',             document: 'Manual sistema de sirenas.pdf',             documentId: 'd5', result: 'ok',       detail: 'Documento subido por primera vez',                                            criticality: 'alta' },
-  { id: 'a11', date: '20/09/2024', time: '13:45', user: 'Director/a de Explotación',  action: 'nueva_version',      document: 'Norma de Explotación Guadalmena.pdf',      documentId: 'd6', result: 'ok',       detail: 'Nueva versión 2.0 — Revisión por cambio de normativa',                        criticality: 'media' },
-  { id: 'a12', date: '20/09/2024', time: '13:47', user: 'Director/a de Explotación',  action: 'descarga',           document: 'Norma de Explotación Guadalmena.pdf',      documentId: 'd6', result: 'ok',       detail: 'Descarga registrada',                                                         criticality: 'media' },
+  { id: 'a11', date: '20/09/2024', time: '13:45', user: 'Director/a de Explotación',  action: 'nueva_version',      document: 'Norma de Explotación Bembézar.pdf',      documentId: 'd6', result: 'ok',       detail: 'Nueva versión 2.0 — Revisión por cambio de normativa',                        criticality: 'media' },
+  { id: 'a12', date: '20/09/2024', time: '13:47', user: 'Director/a de Explotación',  action: 'descarga',           document: 'Norma de Explotación Bembézar.pdf',      documentId: 'd6', result: 'ok',       detail: 'Descarga registrada',                                                         criticality: 'media' },
   { id: 'a13', date: '05/09/2024', time: '11:10', user: 'Usuario externo autorizado', action: 'descarga',           document: 'Informe inspección visual abril 2026.pdf', documentId: 'd4', result: 'ok',       detail: 'Descarga autorizada — criticidad Baja',                                       criticality: 'baja' },
   { id: 'a14', date: '22/04/2024', time: '08:55', user: 'Administrador SIPRESAS',     action: 'metadatos_editados', document: 'Plano de compuertas.dwg',                  documentId: 'd3', result: 'ok',       detail: 'Etiquetas actualizadas: añadido "aliviadero"' },
 ];

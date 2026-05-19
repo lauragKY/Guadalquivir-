@@ -91,8 +91,8 @@ export default function ScreenDashboard({ onNavigate }: Props) {
           <div className="space-y-2 text-xs">
             <div className="grid grid-cols-2 gap-2">
               {[
-                { label: 'Archivo original', value: 'Guadalmena_BIM_IFC_v1.ifc' },
-                { label: 'Archivo optimizado', value: 'Guadalmena_Modelo_Optimizado_v1.gltf' },
+                { label: 'Archivo original', value: 'Bembezar_BIM_IFC_v1.ifc' },
+                { label: 'Archivo optimizado', value: 'Bembezar_Modelo_Optimizado_v1.gltf' },
                 { label: 'Versión', value: '1.0 · Publicado' },
                 { label: 'Última actualización', value: '20/03/2026' },
                 { label: 'Elementos totales', value: '14.832' },
@@ -204,10 +204,10 @@ export default function ScreenDashboard({ onNavigate }: Props) {
         <h3 className="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2"><FileText size={15} /> Documentación vinculada (Archivo Técnico)</h3>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
           {[
-            { label: 'Modelos BIM originales', value: 3, path: 'AT > BIM > Guadalmena > Modelos originales' },
-            { label: 'Modelos optimizados', value: 1, path: 'AT > BIM > Guadalmena > Modelos optimizados' },
-            { label: 'Planos', value: 8, path: 'AT > BIM > Guadalmena > Planos' },
-            { label: 'Manuales', value: 12, path: 'AT > BIM > Guadalmena > Manuales' },
+            { label: 'Modelos BIM originales', value: 3, path: 'AT > BIM > Bembézar > Modelos originales' },
+            { label: 'Modelos optimizados', value: 1, path: 'AT > BIM > Bembézar > Modelos optimizados' },
+            { label: 'Planos', value: 8, path: 'AT > BIM > Bembézar > Planos' },
+            { label: 'Manuales', value: 12, path: 'AT > BIM > Bembézar > Manuales' },
           ].map(d => (
             <div key={d.label} className="bg-slate-50 rounded-xl border border-slate-200 p-3">
               <p className="text-lg font-bold text-slate-900">{d.value}</p>

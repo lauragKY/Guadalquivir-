@@ -10,7 +10,7 @@ interface Props {
 
 type UploadState = 'idle' | 'uploading' | 'new_version' | 'done' | 'error';
 
-const EXISTING_NAMES = ['Plan de Emergencia Guadalmena.pdf', 'Plano de compuertas.dwg', 'Cartografía zonas inundables.pdf'];
+const EXISTING_NAMES = ['Plan de Emergencia Bembézar.pdf', 'Plano de compuertas.dwg', 'Cartografía zonas inundables.pdf'];
 
 export default function ModalUpload({ onClose }: Props) {
   const [fileName, setFileName] = useState('');

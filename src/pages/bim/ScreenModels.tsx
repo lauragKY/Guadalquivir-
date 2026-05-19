@@ -56,7 +56,7 @@ export default function ScreenModels({ onNavigate }: Props) {
           <p className="font-bold text-blue-900 mb-1">Arquitectura BIM de SIPRESAS</p>
           <p className="text-blue-800">El modelo original (IFC/RVT, hasta varios GB) <strong>se conserva en Archivo Técnico</strong> y nunca se carga directamente en el visor. El visor BIM utiliza una <strong>versión optimizada</strong> (glTF/FBX, ~88 MB) para garantizar rendimiento. Los elementos críticos del modelo optimizado se vinculan a Inventario, Mantenimiento y Auscultación.</p>
           <div className="mt-2 flex items-center gap-1 text-blue-700">
-            <Archive size={12} /> Ruta: <span className="font-mono ml-1">Archivo Técnico → BIM → Guadalmena → Modelos originales</span>
+            <Archive size={12} /> Ruta: <span className="font-mono ml-1">Archivo Técnico → BIM → Bembézar → Modelos originales</span>
           </div>
         </div>
       </div>
@@ -96,7 +96,7 @@ export default function ScreenModels({ onNavigate }: Props) {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-semibold text-slate-600 mb-1">Nombre del modelo</label>
-                  <input className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Guadalmena_BIM_IFC_v2.ifc" />
+                  <input className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Bembézar_BIM_IFC_v2.ifc" />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-slate-600 mb-1">Formato</label>

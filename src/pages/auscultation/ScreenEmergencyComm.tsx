@@ -30,7 +30,7 @@ export default function ScreenEmergencyComm({ onNavigate }: Props) {
     <div className="space-y-5">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-slate-900">Comunicación al Plan de Emergencia</h2>
-        <span className="text-xs text-slate-500">Presa de Guadalmena · CHGuadalquivir</span>
+        <span className="text-xs text-slate-500">Presa de Bembézar · CHGuadalquivir</span>
       </div>
 
       {/* Active situation summary */}
@@ -85,7 +85,7 @@ export default function ScreenEmergencyComm({ onNavigate }: Props) {
           <p className="text-xs font-bold uppercase tracking-wide text-slate-500 mb-3">Datos técnicos que se incluirán en la comunicación</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { label: 'Presa', value: 'Guadalmena' },
+              { label: 'Presa', value: 'Bembézar' },
               { label: 'Fecha/Hora', value: `${CURRENT_DATE} ${CURRENT_TIME}` },
               { label: 'Variable crítica', value: urgentVar?.name ?? '—' },
               { label: 'Valor medido', value: urgentVar ? `${urgentVar.current_value.toFixed(1)} ${urgentVar.unit}` : '—' },
@@ -138,7 +138,7 @@ export default function ScreenEmergencyComm({ onNavigate }: Props) {
               'Histórico de lecturas AUS-Q-FT-001 (últimos 30 días)',
               'Cálculo de umbrales con NE actual (SAIH)',
               'Registro de avisos previos (avisos a1, a2, a3)',
-              'Ficha de la presa — Guadalmena',
+              'Ficha de la presa — Bembézar',
             ].map(doc => (
               <div key={doc} className="flex items-center gap-2 text-xs text-slate-600">
                 <CheckCircle size={11} className="text-emerald-500 flex-shrink-0" />

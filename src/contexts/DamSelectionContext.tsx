@@ -17,19 +17,33 @@ export function DamSelectionProvider({ children }: { children: ReactNode }) {
     if (storedDam) {
       try {
         const dam = JSON.parse(storedDam);
-        // Validate that the dam has a UUID format (basic check)
         if (dam.id && dam.id.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i)) {
           setSelectedDam(dam);
         } else {
-          console.warn('Invalid dam ID format, clearing selection');
           localStorage.removeItem('selectedDam');
+          setDefaultDam();
         }
       } catch (error) {
-        console.error('Error parsing stored dam:', error);
         localStorage.removeItem('selectedDam');
+        setDefaultDam();
       }
+    } else {
+      setDefaultDam();
     }
   }, []);
+
+  const setDefaultDam = () => {
+    const demo: Dam = {
+      id: '0bbf880c-2745-40e7-828b-a798fd9636f3',
+      name: 'Presa de Bembézar',
+      code: 'GQ-009',
+      dam_type: 'Arco',
+      province: 'Córdoba',
+      operational_status: 'warning',
+    } as unknown as Dam;
+    setSelectedDam(demo);
+    localStorage.setItem('selectedDam', JSON.stringify(demo));
+  };
 
   const selectDam = (dam: Dam) => {
     setSelectedDam(dam);

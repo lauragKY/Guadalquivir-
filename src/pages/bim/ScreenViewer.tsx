@@ -165,7 +165,7 @@ export default function ScreenViewer({ onNavigate }: Props) {
 
             {/* River downstream */}
             <rect x="480" y="338" width="120" height="52" fill="#bfdbfe" opacity="0.45" />
-            <text x="505" y="365" fontSize="8" fill="#1e40af">Río Guadalmena</text>
+            <text x="505" y="365" fontSize="8" fill="#1e40af">Río Bembézar</text>
 
             {/* Ground */}
             <rect x="0" y="358" width="600" height="30" fill="#78716c" opacity="0.25" />
