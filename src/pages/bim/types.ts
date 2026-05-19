@@ -4,7 +4,6 @@ export type Screen =
   | 'alerts'
   | 'models'
   | 'integrations'
-  | 'simulation'
   | 'historic'
   | 'audit';
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDamSelection } from '../contexts/DamSelectionContext';
-import { AlertTriangle, Activity, Radio, Shield, ClipboardList, Send, BookOpen, ChevronRight, Settings } from 'lucide-react';
+import { AlertTriangle, Activity, Radio, Shield, ClipboardList, Send, BookOpen, ChevronRight, Settings, Zap } from 'lucide-react';
 import type { EmergencyState, EmergencyAction, Recipient, CommunicationRecord } from './emergency/types';
 import {
   INITIAL_EMERGENCY_STATE,
@@ -16,8 +16,9 @@ import Screen3Actuaciones from './emergency/Screen3Actuaciones';
 import Screen4Comunicacion from './emergency/Screen4Comunicacion';
 import Screen5Registro from './emergency/Screen5Registro';
 import ScreenConfigPlan from './emergency/ScreenConfigPlan';
+import ScreenSimulacro from './emergency/ScreenSimulacro';
 
-type Screen = 'situacion' | 'declaracion' | 'actuaciones' | 'comunicacion' | 'registro' | 'sirenas' | 'config';
+type Screen = 'situacion' | 'declaracion' | 'actuaciones' | 'comunicacion' | 'registro' | 'sirenas' | 'config' | 'simulacro';
 
 const SIRENAS = [
   { id: 's1',  code: 'SIR-001', name: 'Núcleo urbano Hornachuelos',   status: 'operativa',  lastCheck: '2026-05-12' },
@@ -167,6 +168,22 @@ export default function EmergencyManagement() {
               </div>
               <span className="text-sm font-medium">Configuración del Plan</span>
             </button>
+
+            <button
+              onClick={() => setActiveScreen('simulacro')}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
+                activeScreen === 'simulacro'
+                  ? 'bg-amber-600 text-white'
+                  : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
+              }`}
+            >
+              <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
+                activeScreen === 'simulacro' ? 'bg-amber-500' : 'bg-slate-700'
+              }`}>
+                <Zap size={12} className="text-white" />
+              </div>
+              <span className="text-sm font-medium">Simulacro</span>
+            </button>
           </div>
         </nav>
 
@@ -185,7 +202,8 @@ export default function EmergencyManagement() {
             <ChevronRight size={12} />
             <span className="font-semibold text-slate-700">
               {STEPS.find(s => s.id === activeScreen)?.label ||
-              (activeScreen === 'config' ? 'Configuración del Plan' : 'Equipos de aviso')}
+              (activeScreen === 'config' ? 'Configuración del Plan' :
+               activeScreen === 'simulacro' ? 'Simulacro' : 'Equipos de aviso')}
             </span>
           </div>
 
@@ -238,6 +256,10 @@ export default function EmergencyManagement() {
 
           {activeScreen === 'config' && (
             <ScreenConfigPlan />
+          )}
+
+          {activeScreen === 'simulacro' && (
+            <ScreenSimulacro />
           )}
         </div>
       </main>
