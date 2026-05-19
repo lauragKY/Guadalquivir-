@@ -76,8 +76,8 @@ const SIM_STEPS: { id: SimStep; label: string }[] = [
 export default function ScreenSimulacro() {
   const [step, setStep] = useState<SimStep>('seleccion');
   const [selectedScenarioIdx, setSelectedScenarioIdx] = useState<number | null>(null);
-  const [actions, setActions] = useState<EmergencyAction[]>(SIM_ACTIONS);
-  const [recipients, setRecipients] = useState<Recipient[]>(SIM_RECIPIENTS);
+  const [actions, setActions] = useState<EmergencyAction[]>(() => SIM_ACTIONS.map(a => ({ ...a })));
+  const [recipients, setRecipients] = useState<Recipient[]>(() => SIM_RECIPIENTS.map(r => ({ ...r })));
   const [comms, setComms] = useState<CommunicationRecord[]>([]);
   const [timeline, setTimeline] = useState<TimelineEvent[]>([]);
   const [declared, setDeclared] = useState(false);
@@ -90,8 +90,8 @@ export default function ScreenSimulacro() {
   const reset = () => {
     setStep('seleccion');
     setSelectedScenarioIdx(null);
-    setActions(SIM_ACTIONS);
-    setRecipients(SIM_RECIPIENTS);
+    setActions(SIM_ACTIONS.map(a => ({ ...a })));
+    setRecipients(SIM_RECIPIENTS.map(r => ({ ...r })));
     setComms([]);
     setTimeline([]);
     setDeclared(false);
@@ -490,3 +490,6 @@ export default function ScreenSimulacro() {
     </div>
   );
 }
+
+
+export default ScreenSimulacro
