@@ -82,6 +82,12 @@ export default function Maintenance() {
   }, []);
 
   useEffect(() => {
+    if (contextDam?.id && contextDam.id !== selectedDamId) {
+      setSelectedDamId(contextDam.id);
+    }
+  }, [contextDam?.id]);
+
+  useEffect(() => {
     if (selectedDamId) {
       loadWorkOrders();
     }
@@ -95,9 +101,13 @@ export default function Maintenance() {
     try {
       const damsData = await getDams();
       setDams(damsData);
-      if (damsData.length > 0 && !selectedDamId) {
+      if (damsData.length > 0) {
         const demoDam = damsData.find(d => d.id === contextDam?.id);
-        setSelectedDamId(demoDam ? demoDam.id : damsData[0].id);
+        if (demoDam) {
+          setSelectedDamId(demoDam.id);
+        } else if (!selectedDamId) {
+          setSelectedDamId(damsData[0].id);
+        }
       }
     } catch (error) {
       console.error('Error loading dams:', error);
