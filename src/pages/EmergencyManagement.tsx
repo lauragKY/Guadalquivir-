@@ -54,7 +54,7 @@ export default function EmergencyManagement() {
   const [emergencyState, setEmergencyState] = useState<EmergencyState>(INITIAL_EMERGENCY_STATE);
   const [actions, setActions] = useState<EmergencyAction[]>(MOCK_ACTIONS_ESC0);
   const [recipients, setRecipients] = useState<Recipient[]>(MOCK_RECIPIENTS);
-  const [comms, setComms] = useState<CommunicationRecord[]>([]);
+  const [comms, setComms] = useState<CommunicationRecord[]>(MOCK_COMMS);
 
   if (!selectedDam) {
     return (
